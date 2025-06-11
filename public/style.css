@@ -11,34 +11,52 @@ body {
 }
 
 /* Navbar */
-.navbar {
-    background: #fff;
-    height: 70px;
-    padding: 0 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 999;
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* ADA bg waktu belum scroll */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.custom-navbar.scrolled {
+  background-color: transparent; /* HILANG saat scroll */
+  box-shadow: none;
+}
+
 
 .navbar .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    background-color:transparent;
 }
+.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 .logo {
     display: flex;
     align-items: center;
     font-weight: bold;
     font-size: 18px;
-    margin-right: 0,25px;
+    margin-right: 0;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo img {
-    height: 70px;
+    height: 60px;
     width: auto;
 }
 
@@ -60,6 +78,10 @@ body {
 .nav-links li a:hover {
     color: #113b66;
 }
+.nav-links {
+  position: relative;
+  top: 15px; /* sesuaikan */
+}
 
 .btn-login {
     background-color: #113b66;
@@ -70,6 +92,13 @@ body {
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+
+/* BODY */
+body {
+    padding-top: 80px; /* atau sesuai tinggi navbar kamu */
+}
+
 
 /* Dropdown */
 .dropdown {
@@ -96,45 +125,64 @@ body {
 
 /* Hamburger Menu */
 .menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
 }
 
 .menu-toggle span {
-    height: 3px;
-    width: 25px;
-    background: #113b66;
-    margin: 4px 0;
-    border-radius: 2px;
+  width: 25px;
+  height: 3px;
+  background: #000;
 }
+
+/* Atur ul.nav-links di mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
+    padding: 15px;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
 
 /* Hero section */
 .hero {
-    background: url('foto/view1.png') no-repeat center center/cover;
-    text-align: center;
-    color: #fff;
-    padding: 100px 20px;
+  background: url('foto/view1.png') no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.custom-padding {
+  padding-top: 5rem;   /* atau 80px */
+  padding-bottom: 5rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero h1 {
-    font-size: 48px;
-    color: yellow;
+  font-size: 48px;
+  color: yellow;
 }
 
 .hero p {
-    font-size: 20px;
-    margin: 10px 0;
-    color: white;
-}
-
-.hero .btn {
-    margin-top: 20px;
-    background-color: #113b66;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+  font-size: 20px;
+  color: white;
+  margin: 10px 0;
 }
 
 /* Footer */
@@ -192,10 +240,7 @@ footer {
   object-fit: cover;
   object-position: center;
 }
-#carouselExampleSlidesOnly .carousel-inner {
-  height: 500px !important;
-  background-color: red !important; /* Untuk testing */
-}
+
 }
 
 
