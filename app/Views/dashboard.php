@@ -52,13 +52,6 @@
   </div>
 </section>
 
-<section style="height: 1000px; background: #f5f5f5;">
-  <div class="container text-center">
-    <h2>Scroll ke bawah</h2>
-    <p>Ini hanya konten dummy untuk menguji efek scroll.</p>
-  </div>
-</section>
-
 
 <!-- Destinasi Wisata -->
 <section class="container my-5">
@@ -77,5 +70,134 @@
     <?php endfor; ?>
   </div>
 </section>
+
+<!--PAKET WISATA BUDAYA & TRADISI-->
+<div class="text-center py-2 mb-3 bg-primary text-white fs-4 fw-bold">
+  Paket Wisata Eksplorasi
+</div>
+
+
+    
+  <!-- CARD Paket Wisata -->
+
+<div class="container my-4">
+  <div class="row justify-content-md-end justify-content-center gy-4">
+
+    <!-- Kartu 1 -->
+    <div class="col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="image-wrapper">
+          <img src="../foto/view2.jpg" class="card-img-top" alt="...">
+          <div class="price-tag-bottom">Rp 250.000</div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <span>Card Title</span>
+            <a href="#" class="btn btn-primary btn-sm">Go</a>
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the card’s content.
+          </p>
+          <hr>
+          <p class="text-muted mb-0">Stok terbatas – segera pesan!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kartu 2 -->
+    <div class="col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="image-wrapper">
+          <img src="../foto/view2.jpg" class="card-img-top" alt="...">
+          <div class="price-tag-bottom">Rp 250.000</div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <span>Card Title</span>
+            <a href="#" class="btn btn-primary btn-sm">Go</a>
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the card’s content.
+          </p>
+          <hr>
+          <p class="text-muted mb-0">Stok terbatas – segera pesan!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Kartu 3 -->
+    <div class="col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="image-wrapper">
+          <img src="../foto/view2.jpg" class="card-img-top" alt="...">
+          <div class="price-tag-bottom">Rp 250.000</div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <span>Card Title</span>
+            <a href="#" class="btn btn-primary btn-sm">Go</a>
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the card’s content.
+          </p>
+          <hr>
+          <p class="text-muted mb-0">Stok terbatas – segera pesan!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Paket Wisata Budaya & Tradisi  -->
+<div class="text-center py-2 my-2 bg-primary text-white judul-section">Paket Wisata Budaya & Tradisi</div>
+
+     <!-- CARD Paket Wisata -->
+
+<div class="container my-4">
+  <div class="row justify-content-center gy-4">
+
+    <!-- Kartu -->
+    <div class="col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="image-wrapper">
+          <img src="../foto/view2.jpg" class="card-img-top" alt="...">
+          <div class="price-tag-bottom">Rp 250.000</div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <span>Card Title</span>
+            <a href="#" class="btn btn-primary btn-sm">Go</a>
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the card’s content.
+          </p>
+          <hr>
+          <p class="text-muted mb-0">Stok terbatas – segera pesan!</p>
+        </div>
+      </div>
+    </div>
+
+     <div class="col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+      <div class="card" style="width: 18rem;">
+        <div class="image-wrapper">
+          <img src="../foto/view2.jpg" class="card-img-top" alt="...">
+          <div class="price-tag-bottom">Rp 250.000</div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <span>Card Title</span>
+            <a href="#" class="btn btn-primary btn-sm">Go</a>
+          </h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the bulk of the card’s content.
+          </p>
+          <hr>
+          <p class="text-muted mb-0">Stok terbatas – segera pesan!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duplikat kartu lainnya tinggal di-copy -->
+  </div>
+</div>
 
 <?= $this->include('layout/footer') ?>

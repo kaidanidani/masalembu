@@ -8,8 +8,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.rtl.min.css" integrity="sha384-MdqCcafa5BLgxBDJ3d/4D292geNL64JyRtSGjEszRUQX9rhL1QkcnId+OT7Yw+D+" crossorigin="anonymous">
 
     <!-- CSS -->
-      <link rel="stylesheet" href="<?= base_url('../style.css') ?>">
-</head>
+      <link rel="stylesheet" href= "<?= base_url('../../style.css')?>">
+
+
+
+<style>
+  .image-wrapper {
+    position: relative;
+  }
+
+  .price-tag-bottom {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background: rgba(0, 123, 255, 0.8);
+    color: white;
+    padding: 4px 10px;
+    font-weight: bold;
+    border-radius: 0px;
+  }
+
+  .card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .judul-section {
+    font-size: 1.5rem; /* Bisa diganti sesuai kebutuhan */
+    font-weight: bold; 
+    width: 100%;
+  }
+</style>
+
+    </head>
 <body>
 
 <header>
