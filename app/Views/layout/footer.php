@@ -1,20 +1,33 @@
 <!-- Footer Start -->
-<footer class="footer">
+<footer class="footer bg-dark text-white pt-5 pb-3">
   <div class="container">
     <div class="row text-start text-md-left">
+
+      <!-- Kolom 1: Logo & Deskripsi -->
       <div class="col-md-4 mb-4">
-        <img src="<?= base_url('../foto/logo_new.png') ?>" alt="Logo Masalembu" class="footer-logo img-fluid">
+        <img src="<?= base_url('foto/logo_new.png') ?>" alt="Logo Masalembu" class="footer-logo img-fluid mb-3" style="max-width: 100px;">
+        <span class="ms-2 fs-4 fw-bold">Masalembu</span>
         <p>
-          Setiap perjalanan adalah kisah yang bermakna. Tour Masalembu menghadirkan jejak, menjelajah keunikan alam, dan meresapi degupan alam demi pengalaman yang tak terlupakan.
+          Setiap perjalanan adalah kisah yang bermakna. Tour Masalembu mengabadikan jejak, menjelajahi keindahan, dan menyatu dengan alam demi pengalaman yang tak terlupakan.
         </p>
-        <div class="footer-socials mt-3">
-          <a href="#"><img src="<?= base_url('assets/icons/icon-fb.svg') ?>" alt="Facebook"></a>
-          <a href="#"><img src="<?= base_url('assets/icons/icon-ig.svg') ?>" alt="Instagram"></a>
-          <a href="#"><img src="<?= base_url('assets/icons/icon-yt.svg') ?>" alt="YouTube"></a>
-          <a href="#"><img src="<?= base_url('assets/icons/icon-wa.svg') ?>" alt="WhatsApp"></a>
+        <div class="footer-socials d-flex gap-3 mt-3">
+          <a href="#" target="_blank">
+            <img src="<?= base_url('assets/icons/icon-ig.svg') ?>" alt="Instagram" width="30" height="30">
+          </a>
+          <a href="#" target="_blank">
+            <img src="<?= base_url('assets/icons/icon-yt.svg') ?>" alt="YouTube" width="30" height="30">
+          </a>
+          <a href="#" target="_blank">
+            <img src="<?= base_url('assets/icons/icon-x.svg') ?>" alt="X" width="30" height="30">
+          </a>
+          <a href="#" target="_blank">
+            <img src="<?= base_url('assets/icons/icon-wa.svg') ?>" alt="Whatsapp" width="30" height="30">
+          </a>
         </div>
+
       </div>
 
+      <!-- Kolom 2: Tautan Cepat -->
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold">Tautan Cepat</h5>
         <ul class="list-unstyled">
@@ -28,20 +41,27 @@
         </ul>
       </div>
 
+      <!-- Kolom 3: Kontak -->
       <div class="col-md-4 mb-4">
         <h5 class="fw-bold">Pusat Kontak</h5>
         <p class="mb-1">+6283-2220-627</p>
-        <p class="mb-0">msblkekwsiata@gmail.com</p>
-      </div>
-    </div>
-  </div>
+        <p class="mb-0">
+          <a href="mailto:msblklekwisata@gmail.com" class="email-link">msblklekwisata@gmail.com</a>
+        </p>
 
-  <div class="footer-bottom">
-    <p class="mb-0">© Copyright 2025. All rights reserved.</p>
+
+
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center mt-4 pt-3 border-top border-secondary">
+      <p class="mb-0">&copy; Copyright 2025. All rights reserved.</p>
+    </div>
   </div>
 </footer>
 <!-- Footer End -->
-
 
 
 <!-- Bootstrap JS -->
@@ -51,19 +71,19 @@
   window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.custom-navbar');
     if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');      // tambahkan class yang menghilangkan bg
+      navbar.classList.add('scrolled');
     } else {
-      navbar.classList.remove('scrolled');   // kembalikan bg saat di atas
+      navbar.classList.remove('scrolled');
     }
   });
+
   const toggle = document.getElementById('menu-toggle');
   const navLinks = document.querySelector('.nav-links');
-
   toggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
   });
 </script>
 
-
 </body>
+
 </html>
