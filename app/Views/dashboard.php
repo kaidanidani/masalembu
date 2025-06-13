@@ -1,15 +1,22 @@
 <?= $this->include('layout/header') ?>
 
-<!-- HERO -->
-<section class="hero custom-padding">
-  <div class="hero-content">
-    <h1 class="display-4">Tour Masalembu Island</h1>
+<section class="position-relative overflow-hidden" style="height: 400px;">
+  <!-- Gambar latar -->
+  <img src="../foto/view1.png" class="w-100 h-100 object-fit-cover" alt="View Masalembu">
+
+  <!-- Overlay opsional untuk kontras -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+
+  <!-- Teks di atas gambar -->
+  <div class="position-absolute top-50 start-50 translate-middle text-center text-warning px-3">
+    <h1 class="display-5 fw-bold">Tour Masalembu Island</h1>
     <p class="lead">Scuba | Diving | Snorkeling | Kakatua | Seafood</p>
-    <a href="#" class="btn btn-primary">Mulai Jelajahi</a>
+    <a href="#" class="btn btn-primary mt-2">Mulai Jelajahi</a>
   </div>
 </section>
 
-</section>
+
+
 
 <!-- Explore Section -->
 <section class="container my-5">
