@@ -517,7 +517,6 @@ body {
     overflow: hidden; /* Sembunyikan teks yang berlebihan */
     text-overflow: ellipsis; /* Tambahkan elipsis jika teks terpotong */
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Tampilkan maksimal 3 baris */
     -webkit-box-orient: vertical;
 }
 

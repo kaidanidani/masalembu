@@ -17,5 +17,5 @@
     </ul>
   </div>
 </nav>
-<img src="..." class="img-fluid" alt="...">
+<img src="../" class="img-fluid" alt="...">
 <?=$this->include('layout/footer')?>
