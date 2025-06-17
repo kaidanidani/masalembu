@@ -1,36 +1,28 @@
-<!-- Footer Start -->
-<footer class="footer bg-dark text-white pt-5 pb-3">
+<footer class="pt-5 text-white footer-masalembu">
   <div class="container">
-    <div class="row text-start text-md-left">
+    <div class="row text-left text-md-left">
 
       <!-- Kolom 1: Logo & Deskripsi -->
       <div class="col-md-4 mb-4">
-        <img src="<?= base_url('foto/logo_new.png') ?>" alt="Logo Masalembu" class="footer-logo img-fluid mb-3" style="max-width: 100px;">
-        <span class="ms-2 fs-4 fw-bold">Masalembu</span>
-        <p>
+        <div class="d-flex align-items-center mb-3">
+          <img src="../foto/logo_new.png" alt="Logo Masalembu" class="img-fluid me-2" style="max-width: 50px;">
+          <span class="fs-5 fw-bold text-dark">Masalembu</span>
+        </div>
+        <p class="small">
           Setiap perjalanan adalah kisah yang bermakna. Tour Masalembu mengabadikan jejak, menjelajahi keindahan, dan menyatu dengan alam demi pengalaman yang tak terlupakan.
         </p>
-        <div class="footer-socials d-flex gap-3 mt-3">
-          <a href="#" target="_blank">
-            <img src="<?= base_url('assets/icons/icon-ig.svg') ?>" alt="Instagram" width="30" height="30">
-          </a>
-          <a href="#" target="_blank">
-            <img src="<?= base_url('assets/icons/icon-yt.svg') ?>" alt="YouTube" width="30" height="30">
-          </a>
-          <a href="#" target="_blank">
-            <img src="<?= base_url('assets/icons/icon-x.svg') ?>" alt="X" width="30" height="30">
-          </a>
-          <a href="#" target="_blank">
-            <img src="<?= base_url('assets/icons/icon-wa.svg') ?>" alt="Whatsapp" width="30" height="30">
-          </a>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#"><img src="../assets/icons/icon-ig.svg" alt="Instagram" width="20" height="20"></a>
+          <a href="#"><img src="../assets/icons/icon-yt.svg" alt="YouTube" width="20" height="20"></a>
+          <a href="#"><img src="../assets/icons/icon-x.svg" alt="X" width="20" height="20"></a>
+          <a href="#"><img src="../assets/icons/icon-wa.svg" alt="WhatsApp" width="20" height="20"></a>
         </div>
-
       </div>
 
       <!-- Kolom 2: Tautan Cepat -->
       <div class="col-md-4 mb-4">
-        <h5 class="fw-bold">Tautan Cepat</h5>
-        <ul class="list-unstyled">
+        <h6 class="fw-bold">Tautan Cepat</h6>
+        <ul class="list-unstyled small">
           <li><a href="#" class="text-white text-decoration-none">Beranda</a></li>
           <li><a href="#" class="text-white text-decoration-none">Destinasi Wisata</a></li>
           <li><a href="#" class="text-white text-decoration-none">Oleh - Oleh</a></li>
@@ -43,25 +35,22 @@
 
       <!-- Kolom 3: Kontak -->
       <div class="col-md-4 mb-4">
-        <h5 class="fw-bold">Pusat Kontak</h5>
-        <p class="mb-1">+6283-2220-627</p>
-        <p class="mb-0">
-          <a href="mailto:msblklekwisata@gmail.com" class="email-link">msblklekwisata@gmail.com</a>
+        <h6 class="fw-bold">Pusat Kontak</h6>
+        <p class="small mb-1">+6223-2220-627</p>
+        <p class="small mb-0">
+          <a href="mailto:msblkowisata@gmail.com" class="text-white text-decoration-none">msblkowisata@gmail.com</a>
         </p>
-
-
-
       </div>
-
     </div>
+  </div>
 
-    <!-- Copyright -->
-    <div class="text-center mt-4 pt-3 border-top border-secondary">
-      <p class="mb-0">&copy; Copyright 2025. All rights reserved.</p>
-    </div>
+  <!-- Copyright -->
+  <div class="footer-bottom text-center text-dark py-2 mt-4">
+    <small>&copy; Copyright 2025, All rights reserved.</small>
   </div>
 </footer>
 <!-- Footer End -->
+
 
 
 <!-- Bootstrap JS -->
