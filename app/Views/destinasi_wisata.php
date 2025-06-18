@@ -5,7 +5,7 @@
   <!-- SESUDAH -->
 <div class="hero-wisata">
   <div class="d-flex justify-content-start">
-    <h1 class="title-wisata">DESTINASI WISATA</h1>
+    <h1 class="title-wisata">Masalembu News</h1>
   </div>
 </div>
 
@@ -35,7 +35,8 @@
             <p class="card-text text-muted mb-3"><?= character_limiter(strip_tags($post->excerpt->rendered), 200) ?></p>
             <div class="mt-auto d-flex justify-content-end gap-2">
               <a href="#" class="btn btn-warning">Pesan</a>
-              <a href="<?= site_url('detail/'.$post->id) ?>" class="btn btn-primary">Lihat Detail</a>
+             <a href="<?= site_url('detail/' . $post->id) ?>" class="btn btn-primary">Lihat Detail</a>
+
             </div>
           </div>
         </div>

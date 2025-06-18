@@ -268,6 +268,7 @@ AKHIR CARD PAKET WISATA
 }
  /* css hero wisata end */
 
+ /* Destinasi wisata arikel card */
 .artikel-image img {
   width: 250px;
   height: 160px;
@@ -322,7 +323,76 @@ AKHIR CARD PAKET WISATA
 }
 
 
+/* DESTINASI WISATA ARTIKEL END */
 
+/* //// */
+/* Artikel Detail */
+article h1 {
+  font-size: 2rem;
+  color: #1c1c1c;
+}
+
+.article-img {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn-warning {
+  border-radius: 10px;
+  font-weight: 600;
+}
+/* end artikel detail */
+
+/* Css Kontak start */
+.kontak-table {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.kontak-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kontak-row img {
+  width: 24px;
+  height: 24px;
+}
+
+.kontak-row .label {
+  width: 180px;
+  font-weight: 600;
+}
+
+.kontak-row .colon {
+  width: 10px;
+}
+
+.kontak-row .value {
+  flex: 1;
+}
+
+.container {
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-block{
+  margin: 3rem 7rem 3rem 7rem;
+}
+
+/* END Kotak */
+
+
+/* About Masalembu Start */
+
+
+/* Masalembu End */
 </style>
 
 <!-- ///////////////////////// -->
@@ -349,7 +419,7 @@ AKHIR CARD PAKET WISATA
     <!-- Menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-4  gap-md-4">
-        <li class="nav-item"><a class="nav-link" href="#">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="../home/dashboard">Beranda</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Sumber</a>
           <ul class="dropdown-menu">
@@ -359,8 +429,8 @@ AKHIR CARD PAKET WISATA
             <li><a class="dropdown-item" href="../home/destinasi_wisata">Berita</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Tentang Kami</a></li>
+        <li class="nav-item"><a class="nav-link" href="../home/kontak">Kontak</a></li>
+        <li class="nav-item"><a class="nav-link" href="../home/about">Tentang Kami</a></li>
         <li class="nav-item">
           <a href="#" class="btn btn-primary btn-sm text-white">Login</a>
         </li>
