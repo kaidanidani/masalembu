@@ -72,6 +72,28 @@
     navLinks.classList.toggle('active');
   });
 </script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    }
+  });
+</script>
+
 
 </body>
 

@@ -35,12 +35,7 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = [''];
-    /**
-     * Be sure to declare properties for any property fetch you initialized.
-     * The creation of dynamic property is deprecated in PHP 8.2.
-     */
-    // protected $session;
+    protected $helpers = ['url', 'form']; // ← Tambahkan helper jika perlu
 
     /**
      * @return void
@@ -51,7 +46,39 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-
         // E.g.: $this->session = service('session');
+    }
+
+    /**
+     * Pastikan user sudah login
+     */
+    protected function requireLogin()
+    {
+        if (!session()->get('is_logged_in')) {
+            return redirect()->to('/login')->with('error', '⚠️ Silakan login terlebih dahulu.');
+        }
+        return null;
+    }
+
+    /**
+     * Pastikan user adalah admin
+     */
+    protected function requireAdmin()
+    {
+        if (!session()->get('is_logged_in') || session()->get('role') !== 'admin') {
+            return redirect()->to('/login')->with('error', '❌ Akses hanya untuk admin.');
+        }
+        return null;
+    }
+
+    /**
+     * Pastikan user adalah user biasa
+     */
+    protected function requireUser()
+    {
+        if (!session()->get('is_logged_in') || session()->get('role') !== 'user') {
+            return redirect()->to('/login')->with('error', '❌ Akses hanya untuk pengguna.');
+        }
+        return null;
     }
 }
