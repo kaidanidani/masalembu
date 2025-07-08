@@ -5,19 +5,27 @@
   <div class="row">
     <!-- Artikel Utama -->
     <div class="col-lg-8">
-      <h1 class="fw-bold mb-3"><?= esc($post->title->rendered) ?></h1>
-      <p class="text-muted">Diterbitkan pada: <?= date('d F Y', strtotime($post->date)) ?></p>
+      
+      <?php if (isset($post)): ?>
+        <h1 class="fw-bold mb-3"><?= esc($post->title->rendered) ?></h1>
+        <p class="text-muted">
+          Diterbitkan pada: <?= date('d F Y', strtotime($post->date)) ?>
+        </p>
 
-      <!-- Tampilkan gambar jika belum ditampilkan dalam konten -->
-      <?php if (strpos($post->content->rendered, $post->_embedded->{'wp:featuredmedia'}[0]->source_url ?? '') === false): ?>
-        <img src="<?= $post->_embedded->{'wp:featuredmedia'}[0]->source_url ?? 'https://via.placeholder.com/800x400?text=Gambar+Artikel' ?>" class="img-fluid rounded mb-4" alt="Gambar Artikel">
+        <!-- Gambar Utama -->
+        <?php if (strpos($post->content->rendered, $post->_embedded->{'wp:featuredmedia'}[0]->source_url ?? '') === false): ?>
+          <img src="<?= $post->_embedded->{'wp:featuredmedia'}[0]->source_url ?? 'https://via.placeholder.com/800x400?text=Gambar+Artikel' ?>" class="img-fluid rounded mb-4" alt="Gambar Artikel">
+        <?php endif; ?>
+
+        <!-- Isi Konten -->
+        <div class="content mb-5">
+          <?= $post->content->rendered ?>
+        </div>
+
+        <a href="<?= site_url('home/destinasi_wisata') ?>" class="btn btn-secondary">← Kembali ke Daftar</a>
+      <?php else: ?>
+        <p class="text-danger">Artikel tidak ditemukan.</p>
       <?php endif; ?>
-
-      <div class="content mb-5">
-        <?= $post->content->rendered ?>
-      </div>
-
-      <a href="<?= site_url('home/destinasi_wisata') ?>" class="btn btn-secondary">← Kembali ke Daftar</a>
     </div>
 
     <!-- Sidebar Artikel Terbaru -->
@@ -51,10 +59,12 @@
     border-radius: 8px;
     margin: 15px 0;
   }
+
   @media screen and (max-width: 768px) {
     .d-flex.flex-row {
       flex-direction: column;
     }
+
     .d-flex.flex-row img {
       margin-bottom: 10px;
       width: 100%;
