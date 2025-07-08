@@ -12,19 +12,19 @@
   <h2>1. Kontak Admin</h2>
   <div class="kontak-table">
     <div class="kontak-row">
-      <img src="img/rsc/telepon.png" alt="Telepon">
+      <i class="fa fa-mobile" style="margin-right: 10px; color: rgb(58, 57, 57);"></i>
       <span class="label">Telepon / Whatsapp</span>
       <span class="colon">:</span>
       <span class="value">082 322 260 627</span>
     </div>
     <div class="kontak-row">
-      <img src="img/rsc/email.png" alt="Email">
+      <i class="fa fa-envelope" style="margin-right: 10px; color: rgb(58, 57, 57);"></i>
       <span class="label">Email</span>
       <span class="colon">:</span>
-      <span class="value">mslbekowisata@gmail.com</span>
+      <span class="value"><a href="masalembueco@gmail.com" target="_blank">masalembueco@gmail.com</a></span>
     </div>
     <div class="kontak-row">
-      <img src="img/rsc/website.png" alt="Website">
+      <i class="fa fa-globe" style="margin-right: 10px; color: rgb(58, 57, 57);"></i>
       <span class="label">Website</span>
       <span class="colon">:</span>
       <span class="value"><a href="https://masalembu.com" target="_blank">https://masalembu.com</a></span>
@@ -36,22 +36,22 @@
   <h2>2. Media Sosial</h2>
   <div class="kontak-table">
     <div class="kontak-row">
-      <img src="img/rsc/telepon.png" alt="Telepon">
-      <span class="label">Telepon / Whatsapp</span>
+      <i class="fab fa-instagram" style="margin-right: 10px; color:rgb(58, 57, 57);"></i>
+      <span class="label">Instagram</span>
       <span class="colon">:</span>
-      <span class="value">082 322 260 627</span>
+      <span class="value"><a href="https://www.instagram.com/exploremasalembu/" target="_blank">https://www.instagram.com/exploremasalembu/</a></span>
     </div>
     <div class="kontak-row">
-      <img src="img/rsc/email.png" alt="Email">
-      <span class="label">Email</span>
+      <i class="fab fa-twitter" style="margin-right: 10px; color: rgb(58, 57, 57);"></i>
+      <span class="label">Twitter/X</span>
       <span class="colon">:</span>
-      <span class="value">mslbekowisata@gmail.com</span>
+      <span class="value"><a href="https://x.com/masalembueco" target="_blank">https://x.com/masalembueco</a></span>
     </div>
     <div class="kontak-row">
-      <img src="img/rsc/website.png" alt="Website">
-      <span class="label">Website</span>
+      <i class="fab fa-youtube" style="margin-right: 10px; color: rgb(58, 57, 57);"></i>
+      <span class="label">Youtube</span>
       <span class="colon">:</span>
-      <span class="value"><a href="https://masalembu.com" target="_blank">https://masalembu.com</a></span>
+      <span class="value"><a href="www.youtube.com/@MasalembuEcowisata" target="_blank">www.youtube.com/@MasalembuEcowisata</a></span>
     </div>
   </div>
 </section>
