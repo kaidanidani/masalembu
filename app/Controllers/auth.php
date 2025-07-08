@@ -21,7 +21,6 @@ class Auth extends BaseController
         $user = $userModel->where('email', $email)->first();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Set session
             session()->set([
                 'is_logged_in' => true,
                 'user_id'      => $user['id'],
@@ -33,15 +32,12 @@ class Auth extends BaseController
 
             session()->setFlashdata('success', '✅ Berhasil login sebagai ' . $user['role']);
 
-            // ✅ Tangkap redirect dari query string atau session
             $redirectUrl = $this->request->getGet('redirect') ?? session()->get('redirect_after_login');
-
             if ($redirectUrl) {
                 session()->remove('redirect_after_login');
                 return redirect()->to($redirectUrl);
             }
 
-            // Redirect default
             return $user['role'] === 'admin'
                 ? redirect()->to(base_url('admin/dashboard'))
                 : redirect()->to(base_url('/home/dashboard'));
@@ -55,8 +51,6 @@ class Auth extends BaseController
     {
         session()->destroy();
         return redirect()->to(base_url('/home/dashboard'));
-
-
     }
 
     public function register()
@@ -117,53 +111,55 @@ class Auth extends BaseController
     public function editProfile()
     {
         $userModel = new UserModel();
-        $user = $userModel->find(session()->get('user_id'));
+        $userId = session()->get('user_id');
+        $user = $userModel->find($userId);
+
+        // Ambil data nama & foto dari session jika tersedia
+        $user['foto'] = session()->get('foto') ?? $user['foto'];
+        $user['nama'] = session()->get('username') ?? $user['nama'];
 
         return view('auth/edit_profile', ['user' => $user]);
     }
 
-   public function updateProfile()
-{
-    $userModel = new UserModel();
-    $userId = session()->get('user_id');
-    $user = $userModel->find($userId);
+    public function updateProfile()
+    {
+        $userModel = new UserModel();
+        $userId = session()->get('user_id');
+        $user = $userModel->find($userId);
 
-    $data = [
-        'nama'          => $this->request->getPost('nama'),
-        'alamat'        => $this->request->getPost('alamat'),
-        'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
-    ];
+        $data = [
+            'nama'          => $this->request->getPost('nama'),
+            'alamat'        => $this->request->getPost('alamat'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+        ];
 
-    // Upload Foto (jika ada)
-    $file = $this->request->getFile('foto');
-    if ($file && $file->isValid() && !$file->hasMoved()) {
-        $newName = $file->getRandomName();
+        // Upload foto baru jika ada
+        $file = $this->request->getFile('foto');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
 
-        // Hapus foto lama jika ada
-        if (!empty($user['foto']) && file_exists('uploads/' . $user['foto'])) {
-            unlink('uploads/' . $user['foto']);
+            if (!empty($user['foto']) && file_exists('uploads/' . $user['foto'])) {
+                unlink('uploads/' . $user['foto']);
+            }
+
+            $file->move('uploads', $newName);
+            $data['foto'] = $newName;
+        } else {
+            $data['foto'] = $user['foto']; // Pakai foto lama jika tidak ganti
         }
 
-        // Simpan foto baru
-        $file->move('uploads', $newName);
-        $data['foto'] = $newName;
-    } else {
-        $data['foto'] = $user['foto']; // Tetap pakai foto lama
+        // Ganti password jika diisi
+        $password = $this->request->getPost('password');
+        if (!empty($password)) {
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $userModel->update($userId, $data);
+
+        // Update session data agar sinkron di header dan form
+        session()->set('foto', $data['foto']);
+        session()->set('username', $data['nama']);
+
+        return redirect()->to('/edit-profile')->with('success', 'Profil berhasil diperbarui');
     }
-
-    // Ganti password jika diisi
-    $password = $this->request->getPost('password');
-    if (!empty($password)) {
-        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    $userModel->update($userId, $data);
-
-    // Update session
-    session()->set('foto', $data['foto']);
-    session()->set('username', $data['nama']);
-
-    return redirect()->to('/edit-profile')->with('success', 'Profil berhasil diperbarui');
-}
-
 }
