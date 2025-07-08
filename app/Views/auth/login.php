@@ -42,7 +42,7 @@
       </form>
 
       <div class="link-options">
-        <a href="/forgot-password">Forget your password</a>
+        <a href="<?= site_url('/forgot') ?>">Lupa Password?</a>
         <p>Don't have an account? <a href="/register">Sign Up</a></p>
       </div>
     </div>

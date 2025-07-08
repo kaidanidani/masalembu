@@ -16,8 +16,14 @@
       </ul>
 
       <!-- Tombol Pesan -->
-      <a href="<?= session()->get('is_logged_in') ? site_url('/home/form-pemesanan/'.$paket['slug']) : site_url('/login') ?>" class="btn btn-primary">
-        Pesan Sekarang
+    <?php if (!empty($paket['slug'])): ?>
+  <?php $redirectUrl = base_url('/home/form-pemesanan/' . $paket['slug']); ?>
+  <a href="<?= session()->get('is_logged_in') ? $redirectUrl : site_url('/login?redirect=' . urlencode($redirectUrl)) ?>" class="btn btn-primary">
+    Pesan Sekarang
+  </a>
+<?php else: ?>
+  <button class="btn btn-secondary" disabled>Paket Tidak Valid</button>
+<?php endif; ?>
       </a>
     </div>
   </div>
