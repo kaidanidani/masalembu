@@ -565,84 +565,52 @@ form input[type="password"] {
 
 
 
-
-
-
-
-
-  .alert {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-}
-.alert-success {
-  background-color: #d4edda;
-  color: #155724;
-}
-.alert-danger {
-  background-color: #f8d7da;
-  color: #721c24;
+/* Edit Profile */
+/* Card pembungkus form dan avatar */
+.edit-profile-card {
+  background-color: #f8f9fa; /* Warna abu muda */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 }
 
-
-.password-field {
-  position: relative;
-}
-
-.password-field input {
-  padding-right: 40px;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  font-size: 1.2rem;
-}
-
-
-/* Edit Profil: kotak input dengan border hitam */
-.edit-profile-form .form-control {
-  border: 1.5px solid #000; /* Warna hitam */
-  border-radius: 6px;
-  background-color: #fdfdfd;
-  padding: 10px 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-/* Label bold */
-.edit-profile-form .form-label {
-  font-weight: 600;
-  color: #222;
-}
-
-/* Jarak antar form */
-.edit-profile-form .mb-3 {
-  margin-bottom: 1.25rem;
-}
-
-/* Atur tombol agar terlihat sejajar dan konsisten */
-.edit-profile-form .btn {
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 10px 24px;
-}
-
-/* Tambahan responsive foto profil */
+/* Avatar Foto */
 .edit-profile-avatar {
   width: 220px;
   height: 220px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border: 3px solid #dee2e6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
 }
 
-.form-wrapper {
-  margin-left: 50px;
+/* Avatar icon default jika belum upload foto */
+.avatar-icon {
+  font-size: 220px;
+  color: #adb5bd;
+  margin-right: 20px;
+}
+
+/* Form styling */
+form .form-label {
+  font-weight: 600;
+}
+
+form .form-control {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+form .btn {
+  border-radius: 8px;
+  padding: 10px 24px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .edit-profile-avatar,
+  .avatar-icon {
+    margin: 0 auto 20px;
+  }
 }
