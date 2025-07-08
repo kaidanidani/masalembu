@@ -1,18 +1,4 @@
 <?= $this->include('layout/header') ?>
-<form action="<?= site_url('/home/simpan-pemesanan') ?>" method="post">
-    <input type="hidden" name="paket" value="<?= esc($paket) ?>">
-    <div class="form-group">
-        <label>Nama Lengkap</label>
-        <input type="text" name="nama" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label>Tanggal Berangkat</label>
-        <input type="date" name="tanggal" class="form-control" required>
-    </div>
-    <!-- Tambahkan lainnya -->
-    <button type="submit" class="btn btn-success mt-2">Kirim</button>
-</form>
-
 
 <!-- Hero Section -->
 <section class="hero-section1 mb-5">

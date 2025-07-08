@@ -46,9 +46,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Sumber</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Destinasi Wisata</a></li>
-              <li><a class="dropdown-item" href="#">Oleh - Oleh</a></li>
-              <li><a class="dropdown-item" href="#">Paket Liburan</a></li>
+              <li><a class="dropdown-item" href="#">Cek Pesanan</a></li>
               <li><a class="dropdown-item" href="<?= site_url('/home/destinasi_wisata') ?>">Berita</a></li>
             </ul>
           </li>

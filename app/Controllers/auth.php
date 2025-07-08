@@ -21,7 +21,6 @@ class Auth extends BaseController
         $user = $userModel->where('email', $email)->first();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Set session
             session()->set([
                 'is_logged_in' => true,
                 'user_id'      => $user['id'],
@@ -33,15 +32,12 @@ class Auth extends BaseController
 
             session()->setFlashdata('success', '✅ Berhasil login sebagai ' . $user['role']);
 
-            // ✅ Tangkap redirect dari query string atau session
             $redirectUrl = $this->request->getGet('redirect') ?? session()->get('redirect_after_login');
-
             if ($redirectUrl) {
                 session()->remove('redirect_after_login');
                 return redirect()->to($redirectUrl);
             }
 
-            // Redirect default
             return $user['role'] === 'admin'
                 ? redirect()->to(base_url('admin/dashboard'))
                 : redirect()->to(base_url('/home/dashboard'));
@@ -59,18 +55,12 @@ class Auth extends BaseController
 
     public function register()
     {
-        return view('auth/register');
+        return view('auth/UserRegisterAkun');
     }
 
     public function saveRegister()
     {
         $data = $this->request->getPost();
-
-        // Cek konfirmasi password
-        if ($data['password'] !== $data['confirm_password']) {
-            return redirect()->back()->with('error', 'Konfirmasi password tidak cocok.');
-        }
-
         $userModel = new UserModel();
 
         if ($userModel->where('email', $data['email'])->first()) {
@@ -121,7 +111,12 @@ class Auth extends BaseController
     public function editProfile()
     {
         $userModel = new UserModel();
-        $user = $userModel->find(session()->get('user_id'));
+        $userId = session()->get('user_id');
+        $user = $userModel->find($userId);
+
+        // Ambil data nama & foto dari session jika tersedia
+        $user['foto'] = session()->get('foto') ?? $user['foto'];
+        $user['nama'] = session()->get('username') ?? $user['nama'];
 
         return view('auth/edit_profile', ['user' => $user]);
     }
@@ -138,21 +133,19 @@ class Auth extends BaseController
             'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
         ];
 
-        // Upload Foto (jika ada)
+        // Upload foto baru jika ada
         $file = $this->request->getFile('foto');
         if ($file && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
 
-            // Hapus foto lama jika ada
             if (!empty($user['foto']) && file_exists('uploads/' . $user['foto'])) {
                 unlink('uploads/' . $user['foto']);
             }
 
-            // Simpan foto baru
             $file->move('uploads', $newName);
             $data['foto'] = $newName;
         } else {
-            $data['foto'] = $user['foto']; // Tetap pakai foto lama
+            $data['foto'] = $user['foto']; // Pakai foto lama jika tidak ganti
         }
 
         // Ganti password jika diisi
@@ -163,7 +156,7 @@ class Auth extends BaseController
 
         $userModel->update($userId, $data);
 
-        // Update session
+        // Update session data agar sinkron di header dan form
         session()->set('foto', $data['foto']);
         session()->set('username', $data['nama']);
 
