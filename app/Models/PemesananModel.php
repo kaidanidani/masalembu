@@ -13,7 +13,7 @@ class PemesananModel extends Model
         'user_id', 'nama_lengkap', 'no_hp', 'email', 'alamat',
         'paket_wisata', 'tanggal_berangkat', 'tanggal_pulang', 'jumlah_penumpang',
         'transportasi', 'penginapan', 'makanan', 'kendaraan', 'asuransi', 'catatan',
-        'bank', 'harga_paket', 'biaya_admin', 'total_bayar'
+        'bank', 'harga_paket', 'biaya_admin', 'total_bayar', 'status', 'created_at'
     ];
 
     protected $useTimestamps = true;

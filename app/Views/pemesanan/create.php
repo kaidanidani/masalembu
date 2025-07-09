@@ -1,17 +1,4 @@
 <?= $this->include('layout/header') ?>
-<form action="<?= site_url('/home/simpan-pemesanan') ?>" method="post">
-    <input type="hidden" name="paket" value="<?= esc($paket) ?>">
-    <div class="form-group">
-        <label>Nama Lengkap</label>
-        <input type="text" name="nama" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label>Tanggal Berangkat</label>
-        <input type="date" name="tanggal" class="form-control" required>
-    </div>
-    <!-- Tambahkan lainnya -->
-    <button type="submit" class="btn btn-success mt-2">Kirim</button>
-</form>
 
 
 <!-- Hero Section -->
@@ -31,20 +18,16 @@
       <h5 class="mb-3">1. Informasi Pemesan</h5>
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label>Nama Depan</label>
-          <input type="text" name="nama_depan" class="form-control" required>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Nama Belakang</label>
-          <input type="text" name="nama_belakang" class="form-control" required>
+          <label>Nama Lengkap</label>
+          <input type="text" name="nama_lengkap" class="form-control" required>
         </div>
         <div class="col-md-6 mb-3">
           <label>No Telepon / Whatsapp</label>
           <input type="text" name="no_hp" class="form-control" required>
         </div>
-        <div class="col-md-6 mb-3">
+         <div class="col-md-6 mb-3">
           <label>Email</label>
-          <input type="email" name="email" class="form-control" required>
+          <input type="text" name="email" class="form-control" required>
         </div>
         <div class="col-12 mb-3">
           <label>Alamat Lengkap</label>

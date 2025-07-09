@@ -39,7 +39,7 @@
       <img src="img/rsc/telepon.png" alt="Telepon">
       <span class="label">Telepon / Whatsapp</span>
       <span class="colon">:</span>
-      <span class="value">082 322 260 627</span>
+      <span class="value"> <a href="https://wa.me/6282322290627"> 082 322 260 627</span>
     </div>
     <div class="kontak-row">
       <img src="img/rsc/email.png" alt="Email">

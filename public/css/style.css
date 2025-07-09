@@ -614,3 +614,45 @@ form .btn {
     margin: 0 auto 20px;
   }
 }
+
+
+
+
+/* Dasboard ADMIN */
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.admin-panel .card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-panel .card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-panel .table-responsive {
+  flex: 1;
+}
+
+.table-bordered .table-light {
+  padding-top: 200%;
+  margin-top: 20%;
+}
+
+/* Manajemen Pemesanan */
+.admin-hero h1 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.card .nav-tabs .nav-link {
+  border: none;
+}
+.card .nav-tabs .nav-link.active {
+  border-bottom: 2px solid #0d6efd;
+}
