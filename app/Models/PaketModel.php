@@ -6,20 +6,12 @@ use CodeIgniter\Model;
 
 class PaketModel extends Model
 {
-    protected $table = 'paket_wisata';
+    protected $table = 'paket_wisata'; // Sesuaikan dengan nama tabel
     protected $primaryKey = 'id';
 
     protected $allowedFields = [
-        'nama',
-        'slug',
-        'kategori',
-        'harga',
-        'fasilitas',
-        'durasi',
-        'gambar',
-        'rating',
-        'deskripsi',
-        'created_at',
-        'updated_at'
+        'kategori', 'nama', 'slug', 'harga',
+        'fasilitas', 'durasi', 'gambar', 'rating',
+        'deskripsi', 'created_at', 'updated_at'
     ];
 }

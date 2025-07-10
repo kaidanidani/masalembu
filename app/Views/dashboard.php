@@ -1,419 +1,134 @@
 <?= $this->include('layout/header') ?>
-<!-- HERO SECTION -->
-<section class="hero-section position-relative text-white">
-  <img src="../foto/view1.png" class="w-100 img-fluid hero-background" alt="Background Masalembu">
 
-  <div class="container position-absolute top-50 start-50 translate-middle">
-    <div class="d-flex flex-column align-items-center text-center gap-3 px-3">
-      <h1 class="hero-title">Tour Masalembu Island</h1>
-      <p class="hero-subtitle">Scuba | Diving | Snorkeling | Kakatua | Seafood</p>
-      <a href="#" class="btn btn-outline-light btn-hero">Mulai Jelajahi</a>
-    </div>
+<div class="container mt-5 pt-4 pb-4 bg-info shadow-none p-3 mb-5 bg-light rounded">
+  <!-- DETAIL PAKET -->
+  <div class="row mb-5">
+    <?php if (isset($paket)): ?>
+      <div class="col-md-6">
+        <img src="<?= base_url('foto/' . $paket['gambar']) ?>" class="img-fluid rounded" alt="<?= esc($paket['nama']) ?>" />
+      </div>
+      <div class="col-md-6">
+        <h3><?= esc($paket['nama']) ?></h3>
+        <p class="text-warning fw-semibold">⭐ <?= number_format($paket['rating'], 1) ?> / 5.0</p>
+        <h4 class="text-danger fw-bold">Rp. <?= number_format($paket['harga'], 0, ',', '.') ?></h4>
+
+        <ul>
+          <?php 
+            // Pecah fasilitas jadi array kalau belum
+            $fasilitas = is_array($paket['fasilitas']) ? $paket['fasilitas'] : explode(',', $paket['fasilitas']);
+            foreach ($fasilitas as $f): ?>
+              <li><?= esc(trim($f)) ?></li>
+          <?php endforeach ?>
+        </ul>
+
+        <?php if (!empty($paket['slug'])): ?>
+          <?php $redirectUrl = base_url('/home/form-pemesanan/' . $paket['slug']); ?>
+          <a href="<?= session()->get('is_logged_in') ? $redirectUrl : site_url('/login?redirect=' . urlencode($redirectUrl)) ?>" class="btn btn-primary mt-3">
+            Pesan Sekarang
+          </a>
+        <?php else: ?>
+          <button class="btn btn-secondary mt-3" disabled>Paket Tidak Valid</button>
+        <?php endif ?>
+      </div>
+    <?php else: ?>
+      <div class="col-12">
+        <div class="alert alert-warning text-center">Data paket tidak tersedia.</div>
+      </div>
+    <?php endif ?>
   </div>
-</section>
 
+  <!-- Floating Chat Icon -->
+  <button class="btn btn-primary rounded-circle shadow-lg chat-toggle-btn" id="chatToggle">
+    <i class="bi bi-chat-dots-fill fs-4"></i>
+  </button>
 
-
-
-
-<!-- Konten lain dashboard -->
-<div class="container mt-5">
-  <p>Selamat datang di dashboard wisata Masalembu.</p>
-</div>
-
-<div class="container my-4">
-  <div class="row row-cols-1 row-cols-md-4 g-4">
-   
-  <div class="col">
-      <div class="card h-100">
-        <img src="../foto/snorkeling.png" class="card-img-top rounded-top" alt="Gambar 2">
-        <div class="card-body">
-          <p class="card-text">Deskripsi card kedua.</p>
-        </div>
-      </div>
+  <!-- Chat Box -->
+  <div class="chat-box shadow rounded d-none" id="chatBox">
+    <div class="chat-header bg-primary text-white p-2 rounded-top d-flex justify-content-between">
+      <span><i class="bi bi-robot"></i> Chat Bantuan</span>
+      <button class="btn-close btn-close-white btn-sm" id="closeChat"></button>
     </div>
-    
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="../foto/diving.png" class="card-img-top rounded-top" alt="Gambar 2">
-        <div class="card-body">
-          <p class="card-text">Deskripsi card kedua.</p>
-        </div>
-      </div>
+    <div class="chat-body p-3" id="chatMessages" style="height: 250px; overflow-y: auto;">
+      <div class="text-muted small">Silakan ketik pertanyaanmu...</div>
     </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="../foto/scuba.png" class="card-img-top rounded-top" alt="Gambar 3">
-        <div class="card-body">
-          <p class="card-text">Deskripsi card ketiga.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card h-100">
-        <img src="../foto/burung-kakatua.png" class="card-img-top rounded-top" alt="Gambar 4">
-        <div class="card-body">
-          <p class="card-text">Deskripsi card keempat.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-<!-- Carousel Section -->
-<section class="container my-5">
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner" style="height: 500px;">
-      <div class="carousel-item active">
-        <img src="../foto/view3.jpg" class="d-block w-100" alt="View 3">
-      </div>
-      <div class="carousel-item">
-        <img src="../foto/view4.jpg" class="d-block w-100" alt="View 4">
-      </div>
-      <div class="carousel-item">
-        <img src="../foto/view5.jpg" class="d-block w-100" alt="View 5">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-</section>
-
-
-<!-- Destinasi Wisata -->
-
-  <div class="container py-5">
-  <div class="row">
-    <!-- Kolom Kiri: Destinasi Wisata -->
-    <div class="col-md-6">
-      <div class="section-title">Destinasi Wisata</div>
-      <div class="row g-3">
-        <!-- Card 1 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/destinasi1.png" alt="Pulau">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Menjelajahi Keindahan Tersembunyi Masalembu: Surga di Tengah Laut</p>
-              <a href="#" class="btn btn-detail ">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/destinasi2.png" alt="Karang">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Pulau Karang Masalembu yang Menyimpan Biota Laut</p>
-              <a href="#" class="btn btn-detail btn-end">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/destinasi3.png" alt="Senja">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Pesona Senja di Pantai Masalembu</p>
-              <a href="#" class="btn btn-detail">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/destinasi4.png" alt="Senja">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Pesona Senja di Pantai Masalembu</p>
-              <a href="#" class="btn btn-detail mt-auto">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Kolom Kanan: Oleh-Oleh -->
-    <div class="col-md-6">
-      <div class="section-title">Oleh - Oleh</div>
-      <div class="row g-3">
-        <!-- Card 1 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/oleholeh1.png" alt="Ikan">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Rekomendasi Buah Tangan: Ikan Kering Khas Masalembu</p>
-              <a href="#" class="btn btn-detail mt-auto">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/oleholeh2.png" alt="Rempah">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Rempah Tradisional dari Masalembu</p>
-              <a href="#" class="btn btn-detail mt-auto">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/oleholeh3.png" alt="Seafood">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Oleh-Oleh Olahan Laut Segar</p>
-              <a href="#" class="btn btn-detail mt-auto">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="col-md-6">
-          <div class="card custom-card equal-height">
-            <img src="../foto/oleholeh4.png" alt="Camilan">
-            <div class="card-body d-flex flex-column">
-              <p class="card-text">Camilan Unik dari Masalembu</p>
-              <a href="#" class="btn btn-detail mt-auto">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="chat-footer p-2">
+      <form id="chatForm">
+        <input type="text" class="form-control" id="userMessage" placeholder="Tulis pesan..." autocomplete="off" />
+      </form>
     </div>
   </div>
 </div>
 
-
-<!--PAKET WISATA EKSPLORASI-->
-<div class="text-center py-2 mb-3 bg-primary text-white fs-4 fw-bold">
-  Paket Wisata Eksplorasi
-</div>
-
-<div class="container">
-  <div class="row justify-content-center g-4">
-
-    <!-- Card 1 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/paket_masalembu_adventure.png" class="card-img-top rounded-top-4" alt="Masalembu Adventure">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 bg-dark text-white harga-box" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.3.000.000
-          </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Masalembu Adventure</h6>
-            <a href="#" class="btn btn-primary btn-sm">Lihat Detail</a>
-          </div>
-          <p class="text-justify small">
-            <strong>Fasilitas:</strong><br>
-            Transportasi laut, Home Stay, Makan 3x sehari, Pemandu wisata lokal, Peralatan snorkeling, Dokumentasi foto & video (kamera DSLR + GoPro)
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/paket_island_hopping.png" class="card-img-top rounded-top-4" alt="Island Hopping">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 bg-dark text-white harga-box" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.3.000.000
-          </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Island Hopping</h6>
-            <a href="#" class="btn btn-primary btn-sm">Lihat Detai</a>
-          </div>
-          <p class="text-justify small">
-            <strong>Fasilitas:</strong><br>
-            Transportasi laut, Home Stay, Makan 3x sehari, Pemandu wisata lokal, Peralatan snorkeling, Dokumentasi foto & video (kamera DSLR + GoPro)
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/paket_snorkeling_diving.png" class="card-img-top rounded-top-4" alt="Snorkeling & Diving">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 bg-dark text-white harga-box" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.3.000.000
-          </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Snorkeling & Diving</h6>
-            <a href="#" class="btn btn-primary btn-sm">Lihat Detail</a>
-          </div>
-          <p class="text-justify small">
-            <strong>Fasilitas:</strong><br>
-            Transportasi laut, Home Stay, Makan 3x sehari, Pemandu wisata lokal, Peralatan snorkeling, Dokumentasi foto & video (kamera DSLR + GoPro)
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<!-- PENILAIAN PELANGGAN -->
+<div class="row mt-5 px-5">
+  <div class="col-12">
+    <h4 class="fw-bold mb-4">Penilaian Pelanggan :</h4>
   </div>
-</div>
 
-<br>
-<!--Paket Wisata Budaya & Tradisi-->
-<div class="text-center py-2 mb-3 bg-primary text-white fs-4 fw-bold">
-  Paket Wisata Budaya & Tradisi
-</div>
-
-<div class="container">
-  <div class="row justify-content-center g-4">
-    <!-- Card 1 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/oleholeh1.png" class="card-img-top rounded-top-4" alt="Masalembu Adventure">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 harga-box bg-dark text-white" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.2.000.000
+  <?php if (!empty($reviews)): ?>
+    <?php foreach ($reviews as $p): ?>
+      <div class="col-md-6 col-lg-4 mb-4 px-2">
+        <div class="border rounded shadow-sm p-4 h-100 bg-white">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <strong><?= esc($p['nama_lengkap']) ?></strong>
+            <div>
+              <?php for ($i = 1; $i <= 5; $i++): ?>
+                <i class="bi bi-star<?= $i <= $p['rating_user'] ? '-fill text-warning' : '' ?>"></i>
+              <?php endfor ?>
+            </div>
           </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Kenikmatan Ikan Segar</h6>
-            <a href="#" class="btn btn-primary btn-sm">Lihat Detail</a>
-          </div>
-          <p class="small text-justify">
-            <strong>Fasilitas:</strong><br>
-            Mengikuti nelayan melaut, peralatan memancing, Workshop pengolahan hasil laut, Makan hasil tangkapan sendiri, Dokumentasi foto/video
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <div><span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-          </div>
+          <p class="mb-0"><?= esc($p['feedback_user']) ?></p>
         </div>
       </div>
+    <?php endforeach ?>
+  <?php else: ?>
+    <div class="col-12">
+      <p class="text-muted">Belum ada penilaian dari pelanggan.</p>
     </div>
-
-    <!-- Card 2 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/oleholeh3.png" class="card-img-top rounded-top-4" alt="Masalembu Adventure">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 harga-box bg-dark text-white" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.2.000.000
-          </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Kuliner Masalembu</h6>
-            <a href="<?= site_url('paket/masalembu-adventure') ?>" class="btn btn-primary btn-sm">Lihat Detail</a>
-
-          </div>
-          <p class="small text-justify">
-            <strong>Fasilitas:</strong><br>
-            Merasakan memasak kuliner khas Masalembu, Wisata kuliner lokal, Makan siang & makan malam spesial, Dokumentasi 1 jam selama kegiatan
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <div><span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<br>
-<!--Paket Wisata Keluarga & Relaksasi-->
-<div class="text-center py-2 mb-3 bg-primary text-white fs-4 fw-bold">
-  Paket Wisata Keluarga & Relaksasi
+  <?php endif ?>
 </div>
 
-<div class="container">
-  <div class="row justify-content-center g-4">
-
-    <!-- Card 1 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/oleholeh1.png" class="card-img-top rounded-top-4" alt="Masalembu Adventure">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 harga-box bg-dark text-white" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.2.000.000
-          </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Kenikmatan Ikan Segar</h6>
-            <a href="<?= site_url('paket/masalembu-adventure') ?>" class="btn btn-primary btn-sm">Lihat Detail</a>
-
-          </div>
-          <p class="small text-justify">
-            <strong>Fasilitas:</strong><br>
-            Mengikuti nelayan melaut, peralatan memancing, Workshop pengolahan hasil laut, Makan hasil tangkapan sendiri, Dokumentasi foto/video
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <div><span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
-      <div class="card h-100">
-        <div class="position-relative">
-          <img src="../foto/oleholeh3.png" class="card-img-top rounded-top-4" alt="Masalembu Adventure">
-          <div class="position-absolute bottom-0 start-0 px-3 py-1 harga-box bg-dark text-white" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
-            Rp.2.000.000
-          </div>
-        </div>
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="card-title fw-semibold mb-0">Kuliner Masalembu</h6>
-           <a href="<?= site_url('paket/masalembu-adventure') ?>" class="btn btn-primary btn-sm">Lihat Detail</a>
-
-          </div>
-          <p class="small text-justify">
-            <strong>Fasilitas:</strong><br>
-            Merasakan memasak kuliner khas Masalembu, Wisata kuliner lokal, Makan siang & makan malam spesial, Dokumentasi 1 jam selama kegiatan
-          </p>
-          <hr>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <small class="text-muted">Duration: 2 Days</small>
-            <div><span class="text-warning">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
 <?= $this->include('layout/footer') ?>
+
+<script>
+  const chatToggle = document.getElementById('chatToggle');
+  const chatBox = document.getElementById('chatBox');
+  const closeChat = document.getElementById('closeChat');
+  const chatForm = document.getElementById('chatForm');
+  const chatMessages = document.getElementById('chatMessages');
+  const userMessage = document.getElementById('userMessage');
+
+  chatToggle.addEventListener('click', () => {
+    chatBox.classList.toggle('d-none');
+  });
+
+  closeChat.addEventListener('click', () => {
+    chatBox.classList.add('d-none');
+  });
+
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const message = userMessage.value.trim();
+    if (!message || message.length < 2) return;
+
+    const userDiv = document.createElement('div');
+    userDiv.className = 'text-end mb-2';
+    userDiv.innerHTML = `<span class="badge bg-primary">${message}</span>`;
+    chatMessages.appendChild(userDiv);
+    userMessage.value = '';
+
+    const response = await fetch('/chatgpt-api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message })
+    });
+
+    const result = await response.json();
+    const botDiv = document.createElement('div');
+    botDiv.className = 'text-start mb-2';
+    botDiv.innerHTML = `<span class="badge bg-secondary">${result.reply}</span>`;
+    chatMessages.appendChild(botDiv);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  });
+</script>

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\PaketModel;
 use App\Models\PemesananModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use Dompdf\Dompdf;
@@ -11,17 +12,24 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
-    }
-
-    public function masalembu(): string
-    {
-        return 'Halo dari Masalembu!';
-    }
-
-    public function dashboard(): string
-    {
         return view('dashboard');
+    }
+
+   public function dashboard()
+    {
+        $paketModel = new PaketModel();
+
+        // Ambil satu data paket untuk ditampilkan secara detail
+        // Misalnya, ambil paket pertama yang tersedia
+        $paket = $paketModel->first();
+
+        // Dummy reviews (jika belum ada model review)
+        $reviews = []; // Nanti bisa diisi dari model review jika sudah
+
+        return view('dashboard', [
+            'paket' => $paket,
+            'reviews' => $reviews,
+        ]);
     }
 
     public function destinasi_wisata(): string
@@ -126,26 +134,31 @@ class Home extends BaseController
         return view('pemesanan/cetak', $data);
     }
 
-    public function detailPaket($slug)
-    {
-        // Simulasi data sementara
-        $paket = [
-            'slug' => $slug,
-            'nama' => 'Masalembu Adventure',
-            'harga' => 3000000,
-            'rating' => 5,
-            'fasilitas' => [
-                'Snorkeling',
-                'Transportasi Laut',
-                'Makan 3 Kali',
-                'Dokumentasi Foto & Video',
-                'Home Stay',
-                'Pemandu Wisata',
-                'Paket Wisata 5 Orang',
-            ],
-            'gambar' => base_url('foto/paket_masalembu_adventure.png'),
-        ];
+   public function detailPaket($slug)
+{
+    $paketModel = new PaketModel();
+    $pemesananModel = new PemesananModel();
 
-        return view('paket/detail', compact('paket'));
+    $paket = $paketModel->where('slug', $slug)->first();
+
+    if (!$paket) {
+        return "Paket dengan slug '{$slug}' tidak ditemukan di database.";
     }
+
+    // Pecah fasilitas menjadi array
+    $paket['fasilitas'] = explode(',', $paket['fasilitas']);
+
+    // Ambil review dari pelanggan
+    $reviews = $pemesananModel
+        ->where('nama_paket', $paket['nama'])
+        ->where('feedback_user IS NOT NULL', null, false)
+        ->where('rating_user IS NOT NULL', null, false)
+        ->orderBy('updated_at', 'DESC')
+        ->findAll(10);
+
+    return view('paket/detail', [
+        'paket' => $paket,
+        'reviews' => $reviews,
+    ]);
+}
 }

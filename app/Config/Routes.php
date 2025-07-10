@@ -21,7 +21,7 @@ $routes->get('home/about', 'Home::about');
 // ============================
 // === PAKET & PEMESANAN USER
 // ============================
-$routes->get('/paket/(:segment)', 'Home::detailPaket/$1');
+$routes->get('paket/(:segment)', 'Home::detailPaket/$1');
 $routes->get('/home/form-pemesanan', 'Home::formPemesanan');
 $routes->get('/home/form-pemesanan/(:segment)', 'Home::formPemesanan/$1');
 $routes->post('/home/simpan-pemesanan', 'Home::simpanPemesanan');
@@ -77,3 +77,10 @@ $routes->post('/update-profile', 'Auth::updateProfile');
 // ==============
 // ==Manajemen Pemesanan===
 $routes->get('/pemesanan', 'Admin\Pemesanan::index');
+
+// ==============
+// ==Manajemen Pemesanan===
+$routes->post('/chatgpt-api', 'ChatController::chat');
+
+
+

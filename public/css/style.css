@@ -656,3 +656,30 @@ form .btn {
 .card .nav-tabs .nav-link.active {
   border-bottom: 2px solid #0d6efd;
 }
+
+
+
+/* CHAT BOOT */
+/* Chat Floating Icon */
+.chat-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chat Box */
+.chat-box {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  background-color: #fff;
+  z-index: 1040;
+  border: 1px solid #ccc;
+}
