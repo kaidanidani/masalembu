@@ -12,23 +12,34 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('dashboard');
-    }
-
-   public function dashboard()
-    {
         $paketModel = new PaketModel();
+        $paketWisata = $paketModel->orderBy('created_at', 'DESC')->findAll();
 
-        // Ambil satu data paket untuk ditampilkan secara detail
-        // Misalnya, ambil paket pertama yang tersedia
-        $paket = $paketModel->first();
+        // Ambil berita dari WordPress
+        $client = \Config\Services::curlrequest();
+        $berita = [];
 
-        // Dummy reviews (jika belum ada model review)
-        $reviews = []; // Nanti bisa diisi dari model review jika sudah
+        try {
+            $response = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts?_embed&per_page=6");
+            if ($response->getStatusCode() === 200) {
+                $beritaData = json_decode($response->getBody());
+                foreach ($beritaData as $b) {
+                    $berita[] = [
+                        'id' => $b->id, // ✅ Penting untuk view
+                        'judul' => $b->title->rendered,
+                        'thumbnail' => $b->_embedded->{'wp:featuredmedia'}[0]->source_url ?? base_url('foto/default.jpg'),
+                        'konten' => $b->excerpt->rendered,
+                        'link' => $b->link
+                    ];
+                }
+            }
+        } catch (\Throwable $e) {
+            $berita = [];
+        }
 
         return view('dashboard', [
-            'paket' => $paket,
-            'reviews' => $reviews,
+            'paketWisata' => $paketWisata,
+            'berita' => $berita,
         ]);
     }
 
@@ -53,20 +64,26 @@ class Home extends BaseController
     public function detail_artikel($id): string
     {
         $client = \Config\Services::curlrequest();
-        $response = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts/{$id}?_embed");
 
-        if ($response->getStatusCode() !== 200) {
-            return "Artikel tidak ditemukan!";
+        try {
+            $response = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts/{$id}?_embed");
+
+            if ($response->getStatusCode() !== 200) {
+                return "Artikel tidak ditemukan!";
+            }
+
+            $post = json_decode($response->getBody());
+
+            $terbaruResponse = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts?_embed");
+            $terbaru = json_decode($terbaruResponse->getBody());
+
+            return view('detail_artikel', [
+                'post' => $post,
+                'terbaru' => $terbaru,
+            ]);
+        } catch (\Throwable $e) {
+            return "Terjadi kesalahan saat mengambil artikel.";
         }
-
-        $post = json_decode($response->getBody());
-        $terbaruResponse = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts?_embed");
-        $terbaru = json_decode($terbaruResponse->getBody());
-
-        return view('detail_artikel', [
-            'post' => $post,
-            'terbaru' => $terbaru,
-        ]);
     }
 
     public function kontak(): string
@@ -81,7 +98,6 @@ class Home extends BaseController
 
     public function formPemesanan($slug = null)
     {
-        // Simpan URL sebelum login
         if (!session()->get('is_logged_in')) {
             session()->set('redirect_after_login', current_url());
             return redirect()->to('/login');
@@ -92,7 +108,7 @@ class Home extends BaseController
         }
 
         $data['paket'] = $slug;
-        return view('pemesanan/create', $data); // ✅ view path disesuaikan
+        return view('pemesanan/create', $data);
     }
 
     public function simpanPemesanan(): ResponseInterface
@@ -134,31 +150,30 @@ class Home extends BaseController
         return view('pemesanan/cetak', $data);
     }
 
-   public function detailPaket($slug)
-{
-    $paketModel = new PaketModel();
-    $pemesananModel = new PemesananModel();
+    public function detailPaket($slug)
+    {
+        $paketModel = new PaketModel();
+        $pemesananModel = new PemesananModel();
 
-    $paket = $paketModel->where('slug', $slug)->first();
+        $paket = $paketModel->where('slug', $slug)->first();
 
-    if (!$paket) {
-        return "Paket dengan slug '{$slug}' tidak ditemukan di database.";
+        if (!$paket) {
+            return "Paket dengan slug '{$slug}' tidak ditemukan di database.";
+        }
+
+        // Ubah fasilitas jadi array
+        $paket['fasilitas'] = explode(',', $paket['fasilitas']);
+
+        $reviews = $pemesananModel
+            ->where('nama_paket', $paket['nama'])
+            ->where('feedback_user IS NOT NULL', null, false)
+            ->where('rating_user IS NOT NULL', null, false)
+            ->orderBy('updated_at', 'DESC')
+            ->findAll(10);
+
+        return view('paket/detail', [
+            'paket' => $paket,
+            'reviews' => $reviews,
+        ]);
     }
-
-    // Pecah fasilitas menjadi array
-    $paket['fasilitas'] = explode(',', $paket['fasilitas']);
-
-    // Ambil review dari pelanggan
-    $reviews = $pemesananModel
-        ->where('nama_paket', $paket['nama'])
-        ->where('feedback_user IS NOT NULL', null, false)
-        ->where('rating_user IS NOT NULL', null, false)
-        ->orderBy('updated_at', 'DESC')
-        ->findAll(10);
-
-    return view('paket/detail', [
-        'paket' => $paket,
-        'reviews' => $reviews,
-    ]);
-}
 }

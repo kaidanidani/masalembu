@@ -1,134 +1,87 @@
 <?= $this->include('layout/header') ?>
 
-<div class="container mt-5 pt-4 pb-4 bg-info shadow-none p-3 mb-5 bg-light rounded">
-  <!-- DETAIL PAKET -->
-  <div class="row mb-5">
-    <?php if (isset($paket)): ?>
-      <div class="col-md-6">
-        <img src="<?= base_url('foto/' . $paket['gambar']) ?>" class="img-fluid rounded" alt="<?= esc($paket['nama']) ?>" />
-      </div>
-      <div class="col-md-6">
-        <h3><?= esc($paket['nama']) ?></h3>
-        <p class="text-warning fw-semibold">⭐ <?= number_format($paket['rating'], 1) ?> / 5.0</p>
-        <h4 class="text-danger fw-bold">Rp. <?= number_format($paket['harga'], 0, ',', '.') ?></h4>
+<!-- HERO SECTION -->
+<section class="hero-section position-relative text-white">
+  <img src="<?= base_url('foto/view1.png') ?>" class="w-100 img-fluid hero-background" alt="Background Masalembu">
+  <div class="container position-absolute top-50 start-50 translate-middle">
+    <div class="d-flex flex-column align-items-center text-center gap-3 px-3">
+      <h1 class="hero-title">Tour Masalembu Island</h1>
+      <p class="hero-subtitle">Scuba | Diving | Snorkeling | Kakatua | Seafood</p>
+      <a href="#paket-wisata" class="btn btn-outline-light btn-hero">Mulai Jelajahi</a>
+    </div>
+  </div>
+</section>
 
-        <ul>
-          <?php 
-            // Pecah fasilitas jadi array kalau belum
-            $fasilitas = is_array($paket['fasilitas']) ? $paket['fasilitas'] : explode(',', $paket['fasilitas']);
-            foreach ($fasilitas as $f): ?>
-              <li><?= esc(trim($f)) ?></li>
-          <?php endforeach ?>
-        </ul>
+<!-- Informasi Dasar -->
+<div class="container mt-5">
+  <p>Selamat datang di dashboard wisata Masalembu.</p>
+</div>
 
-        <?php if (!empty($paket['slug'])): ?>
-          <?php $redirectUrl = base_url('/home/form-pemesanan/' . $paket['slug']); ?>
-          <a href="<?= session()->get('is_logged_in') ? $redirectUrl : site_url('/login?redirect=' . urlencode($redirectUrl)) ?>" class="btn btn-primary mt-3">
-            Pesan Sekarang
-          </a>
-        <?php else: ?>
-          <button class="btn btn-secondary mt-3" disabled>Paket Tidak Valid</button>
-        <?php endif ?>
-      </div>
-    <?php else: ?>
+<!-- SECTION: Paket Wisata -->
+<section id="paket-wisata" class="container py-5">
+  <h2 class="text-center mb-5">Paket Wisata Tersedia</h2>
+  <div class="row g-4 justify-content-center">
+    <?php if (!empty($paketWisata)) : ?>
+      <?php foreach ($paketWisata as $paket) : ?>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm">
+            <div class="position-relative">
+              <img src="<?= base_url('foto/' . $paket['gambar']) ?>" class="card-img-top" alt="<?= esc($paket['nama']) ?>">
+              <div class="position-absolute bottom-0 start-0 px-3 py-1 bg-dark text-white" style="border-bottom-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0.8;">
+                Rp. <?= number_format($paket['harga'], 0, ',', '.') ?>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="card-title fw-semibold mb-0"><?= esc($paket['nama']) ?></h6>
+                <a href="<?= site_url('paket/' . $paket['slug']) ?>" class="btn btn-primary btn-sm">Lihat Detail</a>
+              </div>
+              <p class="text-justify small"><strong>Fasilitas:</strong> <?= esc($paket['fasilitas']) ?></p>
+              <hr>
+              <div class="d-flex justify-content-between align-items-center mt-auto">
+                <small class="text-muted">Durasi: <?= esc($paket['durasi']) ?></small>
+                <span class="text-warning">
+                  <?php for ($i = 1; $i <= 5; $i++) {
+                    echo '<i class="bi bi-star' . ($i <= $paket['rating'] ? '-fill' : '') . '"></i>';
+                  } ?>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php endforeach ?>
+    <?php else : ?>
       <div class="col-12">
-        <div class="alert alert-warning text-center">Data paket tidak tersedia.</div>
+        <div class="alert alert-warning text-center">Belum ada paket wisata tersedia.</div>
       </div>
     <?php endif ?>
   </div>
+</section>
 
-  <!-- Floating Chat Icon -->
-  <button class="btn btn-primary rounded-circle shadow-lg chat-toggle-btn" id="chatToggle">
-    <i class="bi bi-chat-dots-fill fs-4"></i>
-  </button>
+<!-- Berita dari CMS WordPress -->
+<section class="container my-5">
+  <h2 class="text-center mb-5">Berita Terbaru Masalembu</h2>
+  <div class="row g-4">
+    <?php if (!empty($berita)) : ?>
+      <?php foreach ($berita as $b) : ?>
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <img src="<?= $b['thumbnail'] ?>" class="card-img-top" alt="<?= esc($b['judul']) ?>">
+            <div class="card-body">
+              <h6 class="card-title"><?= esc($b['judul']) ?></h6>
+              <p class="card-text small"><?= character_limiter(strip_tags($b['konten']), 100) ?></p>
+             <a href="<?= site_url('home/detail_artikel/' . $b['id']) ?>" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
 
-  <!-- Chat Box -->
-  <div class="chat-box shadow rounded d-none" id="chatBox">
-    <div class="chat-header bg-primary text-white p-2 rounded-top d-flex justify-content-between">
-      <span><i class="bi bi-robot"></i> Chat Bantuan</span>
-      <button class="btn-close btn-close-white btn-sm" id="closeChat"></button>
-    </div>
-    <div class="chat-body p-3" id="chatMessages" style="height: 250px; overflow-y: auto;">
-      <div class="text-muted small">Silakan ketik pertanyaanmu...</div>
-    </div>
-    <div class="chat-footer p-2">
-      <form id="chatForm">
-        <input type="text" class="form-control" id="userMessage" placeholder="Tulis pesan..." autocomplete="off" />
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- PENILAIAN PELANGGAN -->
-<div class="row mt-5 px-5">
-  <div class="col-12">
-    <h4 class="fw-bold mb-4">Penilaian Pelanggan :</h4>
-  </div>
-
-  <?php if (!empty($reviews)): ?>
-    <?php foreach ($reviews as $p): ?>
-      <div class="col-md-6 col-lg-4 mb-4 px-2">
-        <div class="border rounded shadow-sm p-4 h-100 bg-white">
-          <div class="d-flex justify-content-between align-items-start mb-2">
-            <strong><?= esc($p['nama_lengkap']) ?></strong>
-            <div>
-              <?php for ($i = 1; $i <= 5; $i++): ?>
-                <i class="bi bi-star<?= $i <= $p['rating_user'] ? '-fill text-warning' : '' ?>"></i>
-              <?php endfor ?>
             </div>
           </div>
-          <p class="mb-0"><?= esc($p['feedback_user']) ?></p>
         </div>
+      <?php endforeach ?>
+    <?php else : ?>
+      <div class="col-12">
+        <div class="alert alert-info text-center">Belum ada berita tersedia.</div>
       </div>
-    <?php endforeach ?>
-  <?php else: ?>
-    <div class="col-12">
-      <p class="text-muted">Belum ada penilaian dari pelanggan.</p>
-    </div>
-  <?php endif ?>
-</div>
+    <?php endif ?>
+  </div>
+</section>
 
 <?= $this->include('layout/footer') ?>
-
-<script>
-  const chatToggle = document.getElementById('chatToggle');
-  const chatBox = document.getElementById('chatBox');
-  const closeChat = document.getElementById('closeChat');
-  const chatForm = document.getElementById('chatForm');
-  const chatMessages = document.getElementById('chatMessages');
-  const userMessage = document.getElementById('userMessage');
-
-  chatToggle.addEventListener('click', () => {
-    chatBox.classList.toggle('d-none');
-  });
-
-  closeChat.addEventListener('click', () => {
-    chatBox.classList.add('d-none');
-  });
-
-  chatForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const message = userMessage.value.trim();
-    if (!message || message.length < 2) return;
-
-    const userDiv = document.createElement('div');
-    userDiv.className = 'text-end mb-2';
-    userDiv.innerHTML = `<span class="badge bg-primary">${message}</span>`;
-    chatMessages.appendChild(userDiv);
-    userMessage.value = '';
-
-    const response = await fetch('/chatgpt-api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
-    });
-
-    const result = await response.json();
-    const botDiv = document.createElement('div');
-    botDiv.className = 'text-start mb-2';
-    botDiv.innerHTML = `<span class="badge bg-secondary">${result.reply}</span>`;
-    chatMessages.appendChild(botDiv);
-
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  });
-</script>

@@ -7,80 +7,72 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // =======================
-// === HALAMAN UMUM ====
+// ===== HALAMAN UMUM ====
 // =======================
 $routes->get('/', 'Home::index');
 $routes->get('home/index', 'Home::index');
-$routes->get('home/masalembu', 'Home::masalembu');
-$routes->get('home/dashboard', 'Home::dashboard');
 $routes->get('home/destinasi_wisata', 'Home::destinasi_wisata');
 $routes->get('detail/(:num)', 'Home::detail_artikel/$1');
 $routes->get('home/kontak', 'Home::kontak');
 $routes->get('home/about', 'Home::about');
+$routes->get('home/detail_artikel/(:num)', 'Home::detail_artikel/$1');
 
-// ============================
-// === PAKET & PEMESANAN USER
-// ============================
+// ===============================
+// ====== PAKET & PEMESANAN USER =
+// ===============================
 $routes->get('paket/(:segment)', 'Home::detailPaket/$1');
-$routes->get('/home/form-pemesanan', 'Home::formPemesanan');
-$routes->get('/home/form-pemesanan/(:segment)', 'Home::formPemesanan/$1');
-$routes->post('/home/simpan-pemesanan', 'Home::simpanPemesanan');
-$routes->get('/home/pemesananSaya', 'Home::pemesananSaya');
-$routes->get('/home/cetak/(:num)', 'Home::cetak/$1');
-$routes->get('/home/export-pdf/(:num)', 'Home::exportPdf/$1');
+$routes->get('home/form-pemesanan', 'Home::formPemesanan');
+$routes->get('home/form-pemesanan/(:segment)', 'Home::formPemesanan/$1');
+$routes->post('home/simpan-pemesanan', 'Home::simpanPemesanan');
+$routes->get('home/cetak/(:num)', 'Home::cetak/$1');
+$routes->get('home/export-pdf/(:num)', 'Home::exportPdf/$1');
 
-// ===================
-// === ADMIN PANEL ===
-// ===================
+// ========================
+// ===== AUTENTIKASI ======
+// ========================
+$routes->get('login', 'Auth::login');
+$routes->post('login', 'Auth::attemptLogin');
+$routes->get('logout', 'Auth::logout');
 
-// Dashboard admin
-$routes->get('/admin/dashboard', 'admin\Dashboard::index');
+$routes->get('register', 'Auth::register');
+$routes->post('auth/saveRegister', 'Auth::saveRegister');
 
-// Pemesanan admin
-$routes->get('/admin/pemesanan', 'admin\Pemesanan::index');
-$routes->get('/admin/pemesanan/create', 'admin\Pemesanan::create');
-$routes->post('/admin/pemesanan/store', 'admin\Pemesanan::store');
-$routes->get('/admin/pemesanan/edit/(:num)', 'admin\Pemesanan::edit/$1');
-$routes->post('/admin/pemesanan/update/(:num)', 'admin\Pemesanan::update/$1');
-$routes->get('/admin/pemesanan/delete/(:num)', 'admin\Pemesanan::delete/$1');
+$routes->get('forgot', 'Auth::forgot');
+$routes->post('auth/reset', 'Auth::reset');
 
-// =====================
-// === KOMENTAR USER ===
-// =====================
-$routes->get('/user/komentar', 'User::komentar');
-$routes->post('/user/komentar/simpan', 'User::simpanKomentar');
-$routes->get('/user/komentar/edit/(:num)', 'User::editKomentar/$1');
-$routes->post('/user/komentar/update/(:num)', 'User::updateKomentar/$1');
-$routes->get('/user/komentar/delete/(:num)', 'User::hapusKomentar/$1');
+$routes->get('edit-profile', 'Auth::editProfile');
+$routes->post('update-profile', 'Auth::updateProfile');
 
-// =====================
-// === DASHBOARD USER ==
-// =====================
-$routes->get('/user/dashboard', 'Home::dashboard'); // atau arahkan ke controller user jika terpisah
+// =========================
+// ===== DASHBOARD USER ====
+// =========================
+$routes->get('user/dashboard', 'Home::index'); // Bisa diganti ke UserController jika ada
 
-// =====================
-// === AUTENTIKASI ====
-// =====================
-$routes->get('/login', 'Auth::login');
-$routes->post('/login', 'Auth::attemptLogin');
-$routes->get('/logout', 'Auth::logout');
+// =========================
+// ===== KOMENTAR USER =====
+// =========================
+$routes->get('user/komentar', 'User::komentar');
+$routes->post('user/komentar/simpan', 'User::simpanKomentar');
+$routes->get('user/komentar/edit/(:num)', 'User::editKomentar/$1');
+$routes->post('user/komentar/update/(:num)', 'User::updateKomentar/$1');
+$routes->get('user/komentar/delete/(:num)', 'User::hapusKomentar/$1');
 
-$routes->get('/register', 'Auth::register'); 
-$routes->post('/auth/saveRegister', 'Auth::saveRegister');
+// ========================
+// ===== ADMIN DASHBOARD ==
+// ========================
+$routes->get('admin/dashboard', 'Admin\Dashboard::index');
 
-$routes->get('/forgot', 'Auth::forgot');           
-$routes->post('/auth/reset', 'Auth::reset');       
+// ============================
+// ===== MANAJEMEN PEMESANAN ==
+// ============================
+$routes->get('admin/pemesanan', 'Admin\Pemesanan::index');
+$routes->get('admin/pemesanan/create', 'Admin\Pemesanan::create');
+$routes->post('admin/pemesanan/store', 'Admin\Pemesanan::store');
+$routes->get('admin/pemesanan/edit/(:num)', 'Admin\Pemesanan::edit/$1');
+$routes->post('admin/pemesanan/update/(:num)', 'Admin\Pemesanan::update/$1');
+$routes->get('admin/pemesanan/delete/(:num)', 'Admin\Pemesanan::delete/$1');
 
-$routes->get('/edit-profile', 'Auth::editProfile');
-$routes->post('/update-profile', 'Auth::updateProfile');
-
-// ==============
-// ==Manajemen Pemesanan===
-$routes->get('/pemesanan', 'Admin\Pemesanan::index');
-
-// ==============
-// ==Manajemen Pemesanan===
-$routes->post('/chatgpt-api', 'ChatController::chat');
-
-
-
+// ==========================
+// === API / CHATGPT DEMO ===
+// ==========================
+$routes->post('chatgpt-api', 'ChatController::chat');
