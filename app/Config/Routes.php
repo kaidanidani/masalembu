@@ -10,7 +10,7 @@ use CodeIgniter\Router\RouteCollection;
 // ===== HALAMAN UMUM ====
 // =======================
 $routes->get('/', 'Home::index');
-$routes->get('home/index', 'Home::index');
+$routes->get('home/dashboard', 'Home::index');
 $routes->get('home/destinasi_wisata', 'Home::destinasi_wisata');
 $routes->get('detail/(:num)', 'Home::detail_artikel/$1');
 $routes->get('home/kontak', 'Home::kontak');

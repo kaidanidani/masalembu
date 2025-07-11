@@ -94,106 +94,141 @@
 
 
 
-/* INI CSS CARD EXPLOR MASALEMBU */
-  .card {
-    border-radius: 4rem;
-  }
-  .card-img-top {
-    border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-
-  }
- .card-body .card-text {
-    text-align :center;
-  }
-  /* FINSIH CSS CARD */
-
-
-  /* CARD DESTINASI DAN OLEH-OLEH */
-  .custom-card {
-      border-radius: 2rem 2rem 0 0 !important;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      height: 100%;
-    }
-
-    .custom-card img {
-      border-radius: 2rem 2rem 0 0 !important;
-      height: 180px;
-      object-fit: cover;
-      width: 100%;
-    }
-
-    .card-body {
-      padding: 1rem;
-    }
-
-    .btn-detail {
-  background-color: #007bff;
-  color: white;
+/* === BUTTONS === */
+.btn-masalembu {
+  font-size: 0.875rem;
   padding: 6px 16px;
-  border: none;
   border-radius: 20px;
+  font-weight: 500;
   display: inline-block;
   width: fit-content;
-  font-size: 0.875rem;
   white-space: nowrap;
-  transition: background-color 0.3s ease;
-  align-self: flex-end;         /* tombol pindah ke kanan */
-  margin-top: auto;
+  transition: all 0.3s ease;
 }
 
-.btn-detail:hover {
-  background-color: #0056b3;
+.btn-masalembu-outline {
+  background-color: transparent;
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
+}
+.btn-masalembu-outline:hover {
+  background-color: #0d6efd;
+  color: white;
 }
 
-
-
-    .section-title {
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
-
-    .equal-height {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* AKHIR CARD OLEH2  dan Destinasi Wisata*/
-/* 
-CARD PAKET WISATA
-*/
-.container {
-  align-items:center;
-  display:flex;
-  justify-content:center;
-}
-hr {
+.btn-masalembu-primary {
+  background-color: #0d6efd;
+  color: white;
   border: none;
-  height: 1px;
-  background-color:rgb(178, 191, 205);
-  width: 100%; /* panjang garis */
-  margin: 10px auto; /* tengah secara horizontal */
+}
+.btn-masalembu-primary:hover {
+  background-color: #084cdf;
+  color: white;
+}
+
+/* Untuk tombol hero (besar) */
+.btn-hero {
+  font-size: 1rem;
+  padding: 10px 24px;
+  border-radius: 50px;
+  background-color: #5b7dbc;
+  color: white;
+  border: none;
+}
+.btn-hero:hover {
+  background-color: #47619c;
+}
+
+
+
+/* ======= */
+/* CARD DASBOARD BERITA */
+/* === CARD STYLE FIX === */
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+.card-title {
+  font-weight: 600;
+}
+.card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 .text-justify {
-  text-align: left;
-}
-.harga-box {
-  background-color: rgba(68, 53, 53, 0.53); /* hitam dengan 60% opasitas */
-  color: white;
-  padding: 4px 12px;
-  border-top-right-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  font-weight: bold;
+  text-align: justify;
 }
 
-/* 
-AKHIR CARD PAKET WISATA
-*/
+/* HARGA OVERLAY PAKET */
+.card .harga-overlay,
+.position-absolute.bottom-0.start-0 {
+  background-color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: white;
+  border-top-right-radius: 1rem;
+  padding: 6px 12px;
+}
+
+/* BINTANG */
+.bi-star-fill {
+  color: #ffc107;
+}
+
+/* RESPONSIVE */
+@media (max-width: 576px) {
+  .btn-masalembu,
+  .btn-masalembu-outline,
+  .btn-masalembu-primary {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+}
+
+/* === Glass Effect for Explore Card === */
+.glass-card {
+  background: rgba(255, 255, 255, 0.2); /* transparan putih */
+  backdrop-filter: blur(8px); /* blur efek kaca */
+  -webkit-backdrop-filter: blur(8px); /* untuk Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.explore-card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.explore-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ///////// FOOOTERRRRR ########### */
@@ -253,62 +288,8 @@ AKHIR CARD PAKET WISATA
 }
  /* css hero wisata end */
 
- /* Destinasi wisata arikel card */
-.artikel-image img {
-  width: 250px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-}
+ 
 
-
-.btn-group {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .artikel-card {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .artikel-image img {
-    width: 100%;
-    height: auto;
-  }
-HEAD
-  .artikel-content {
-    text-align: center;
-  }
-}
-
-.image-wrapper img {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-  border-radius: 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .image-wrapper {
-    max-width: 100% !important;
-  }
-
-  .card.flex-md-row {
-    flex-direction: column !important;
-  }
-}
-.garis{
-  margin-top: 2rem;
-  border: none;
-  border-top: 2px solid #000;
-}
-
-
-/* DESTINASI WISATA ARTIKEL END */
 
 /* //// */
 /* Artikel Detail */

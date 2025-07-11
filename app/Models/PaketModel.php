@@ -14,4 +14,16 @@ class PaketModel extends Model
         'fasilitas', 'durasi', 'gambar', 'rating',
         'deskripsi', 'created_at', 'updated_at'
     ];
+   public function getPaketDenganRating()
+{
+    return $this->db->table('paket_wisata p')
+        ->select('p.*, AVG(pm.rating_user) as rating_dinamis')
+        ->join('pemesanan pm', 'pm.nama_paket = p.nama', 'left')
+        ->groupBy('p.id')
+        ->orderBy('p.created_at', 'DESC')
+        ->get()->getResultArray();
+}
+
+
+
 }

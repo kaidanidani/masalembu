@@ -10,38 +10,47 @@ use Dompdf\Options;
 
 class Home extends BaseController
 {
-    public function index(): string
-    {
-        $paketModel = new PaketModel();
-        $paketWisata = $paketModel->orderBy('created_at', 'DESC')->findAll();
+public function index(): string
+{
+    $paketModel = new PaketModel(); // ✅ Tambahkan ini
+    $semuaPaket = $paketModel->getPaketDenganRating();
 
-        // Ambil berita dari WordPress
-        $client = \Config\Services::curlrequest();
-        $berita = [];
+    // Filter berdasarkan kategori
+    $paketEksplorasi = array_filter($semuaPaket, fn($p) => $p['kategori'] === 'Eksplorasi');
+    $paketBudaya     = array_filter($semuaPaket, fn($p) => $p['kategori'] === 'Budaya');
+    $paketRelaksasi  = array_filter($semuaPaket, fn($p) => $p['kategori'] === 'Relaksasi');
 
-        try {
-            $response = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts?_embed&per_page=6");
-            if ($response->getStatusCode() === 200) {
-                $beritaData = json_decode($response->getBody());
-                foreach ($beritaData as $b) {
-                    $berita[] = [
-                        'id' => $b->id, // ✅ Penting untuk view
-                        'judul' => $b->title->rendered,
-                        'thumbnail' => $b->_embedded->{'wp:featuredmedia'}[0]->source_url ?? base_url('foto/default.jpg'),
-                        'konten' => $b->excerpt->rendered,
-                        'link' => $b->link
-                    ];
-                }
+    // Ambil berita dari WordPress
+    $client = \Config\Services::curlrequest();
+    $berita = [];
+
+    try {
+        $response = $client->get("http://localhost:8888/cms/wp-json/wp/v2/posts?_embed&per_page=6");
+        if ($response->getStatusCode() === 200) {
+            $beritaData = json_decode($response->getBody());
+            foreach ($beritaData as $b) {
+                $berita[] = [
+                    'id' => $b->id,
+                    'judul' => $b->title->rendered,
+                    'thumbnail' => $b->_embedded->{'wp:featuredmedia'}[0]->source_url ?? base_url('foto/default.jpg'),
+                    'konten' => $b->excerpt->rendered,
+                    'link' => $b->link
+                ];
             }
-        } catch (\Throwable $e) {
-            $berita = [];
         }
-
-        return view('dashboard', [
-            'paketWisata' => $paketWisata,
-            'berita' => $berita,
-        ]);
+    } catch (\Throwable $e) {
+        $berita = [];
     }
+
+    return view('dashboard', [
+        'paketEksplorasi' => $paketEksplorasi,
+        'paketBudaya'     => $paketBudaya,
+        'paketRelaksasi'  => $paketRelaksasi,
+        'berita'          => $berita,
+    ]);
+}
+
+
 
     public function destinasi_wisata(): string
     {

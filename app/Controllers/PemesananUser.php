@@ -34,32 +34,28 @@ class PemesananUser extends BaseController
 
     // Submit Feedback
     public function submitFeedback()
-    {
-        $id = $this->request->getPost('id');
-        $feedback = $this->request->getPost('feedback_user');
+{
+    $id = $this->request->getPost('id');
+    $feedback = $this->request->getPost('feedback_user');
+    $rating = $this->request->getPost('rating_user');
 
-        $model = new PemesananModel();
-        $pesanan = $model->find($id);
+    $model = new PemesananModel();
+    $pesanan = $model->find($id);
 
-        // Validasi: hanya user yg punya pesanan bisa kasih feedback
-        if (!$pesanan || $pesanan['user_id'] != session()->get('user_id')) {
-            return redirect()->back()->with('error', 'Tidak diizinkan.');
-        }
-
-        $model->update($id, [
-            'feedback_user' => $feedback,
-            'updated_at'    => date('Y-m-d H:i:s'),
-        ]);
-
-        return redirect()->back()->with('success', 'Feedback berhasil dikirim.');
-   
-        // Rating
-        $model->update($id, [
-  'feedback_user' => $feedback,
-  'rating_user' => $this->request->getPost('rating_user'),
-  'updated_at' => date('Y-m-d H:i:s'),
-]);
-
+    // Validasi: hanya user yg punya pesanan bisa kasih feedback
+    if (!$pesanan || $pesanan['user_id'] != session()->get('user_id')) {
+        return redirect()->back()->with('error', 'Tidak diizinkan.');
     }
+
+    // Update feedback & rating dalam satu eksekusi
+    $model->update($id, [
+        'feedback_user' => $feedback,
+        'rating_user'   => $rating,
+        'updated_at'    => date('Y-m-d H:i:s'),
+    ]);
+
+    return redirect()->back()->with('success', 'Feedback dan rating berhasil dikirim.');
+}
+
     
 }
