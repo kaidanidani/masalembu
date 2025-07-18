@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\PaketModel;
 use App\Models\PemesananModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\DisplayModel;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -12,15 +13,18 @@ class Home extends BaseController
 {
 public function index(): string
 {
-    $paketModel = new PaketModel(); // ✅ Tambahkan ini
+    $paketModel = new PaketModel();
+    $displayModel = new DisplayModel(); // ✅ TAMBAH INI
+
     $semuaPaket = $paketModel->getPaketDenganRating();
+    $carouselItems = $displayModel->orderBy('created_at', 'DESC')->findAll(); // ✅
 
     // Filter berdasarkan kategori
     $paketEksplorasi = array_filter($semuaPaket, fn($p) => $p['kategori'] === 'Eksplorasi');
     $paketBudaya     = array_filter($semuaPaket, fn($p) => $p['kategori'] === 'Budaya');
     $paketRelaksasi  = array_filter($semuaPaket, fn($p) => $p['kategori'] === 'Relaksasi');
 
-    // Ambil berita dari WordPress
+    // Ambil berita dari WordPress (tidak diubah)
     $client = \Config\Services::curlrequest();
     $berita = [];
 
@@ -43,13 +47,13 @@ public function index(): string
     }
 
     return view('dashboard', [
+        'carouselItems'   => $carouselItems, // ✅ Kirim ke view
         'paketEksplorasi' => $paketEksplorasi,
         'paketBudaya'     => $paketBudaya,
         'paketRelaksasi'  => $paketRelaksasi,
         'berita'          => $berita,
     ]);
 }
-
 
 
     public function destinasi_wisata(): string
@@ -185,4 +189,10 @@ public function index(): string
             'reviews' => $reviews,
         ]);
     }
+
+    public function cekApiKey()
+{
+    return getenv('GROQ_API_KEY') ?? 'KEY TIDAK TERBACA';
+}
+
 }

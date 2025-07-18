@@ -1,5 +1,13 @@
 <?php
 
+// ⛑ Wajib: Autoload Composer
+require_once ROOTPATH . 'vendor/autoload.php';
+
+// ✅ Load .env
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(ROOTPATH);
+$dotenv->load();
 
 /*
  |--------------------------------------------------------------------------
@@ -22,3 +30,4 @@ defined('SHOW_DEBUG_BACKTRACE') || define('SHOW_DEBUG_BACKTRACE', true);
  |--------------------------------------------------------------------------
  */
 defined('CI_DEBUG') || define('CI_DEBUG', true);
+

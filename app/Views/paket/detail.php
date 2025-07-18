@@ -28,28 +28,7 @@
       <?php endif ?>
     </div>
   </div>
-  <!-- Floating Chat Icon -->
-<button class="btn btn-primary rounded-circle shadow-lg chat-toggle-btn" id="chatToggle">
-  <i class="bi bi-chat-dots-fill fs-4"></i>
-</button>
-
-<!-- Chat Box -->
-<div class="chat-box shadow rounded d-none" id="chatBox">
-  <div class="chat-header bg-primary text-white p-2 rounded-top d-flex justify-content-between">
-    <span><i class="bi bi-robot"></i> Chat Bantuan</span>
-    <button class="btn-close btn-close-white btn-sm" id="closeChat"></button>
-  </div>
-  <div class="chat-body p-3" id="chatMessages" style="height: 250px; overflow-y: auto;">
-    <div class="text-muted small">Silakan ketik pertanyaanmu...</div>
-  </div>
-  <div class="chat-footer p-2">
-    <form id="chatForm">
-      <input type="text" class="form-control" id="userMessage" placeholder="Tulis pesan..." />
-    </form>
-  </div>
-</div>
-
-      </div>
+ </div>
 
  
 <!-- PENILAIAN PELANGGAN -->
@@ -90,49 +69,5 @@ mb-4 di judul	Agar judul tidak terlalu dekat dengan card -->
 <?= $this->include('layout/footer') ?>
 
 
-<!-- Script  -->
 
-<script>
-  const chatToggle = document.getElementById('chatToggle');
-  const chatBox = document.getElementById('chatBox');
-  const closeChat = document.getElementById('closeChat');
-  const chatForm = document.getElementById('chatForm');
-  const chatMessages = document.getElementById('chatMessages');
-  const userMessage = document.getElementById('userMessage');
 
-  chatToggle.addEventListener('click', () => {
-    chatBox.classList.toggle('d-none');
-  });
-
-  closeChat.addEventListener('click', () => {
-    chatBox.classList.add('d-none');
-  });
-
-  chatForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const message = userMessage.value.trim();
-    if (!message) return;
-
-    // Tampilkan pesan user
-    const userDiv = document.createElement('div');
-    userDiv.className = 'text-end mb-2';
-    userDiv.innerHTML = `<span class="badge bg-primary">${message}</span>`;
-    chatMessages.appendChild(userDiv);
-    userMessage.value = '';
-
-    // Kirim ke API ChatGPT
-    const response = await fetch('/chatgpt-api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
-    });
-
-    const result = await response.json();
-    const botDiv = document.createElement('div');
-    botDiv.className = 'text-start mb-2';
-    botDiv.innerHTML = `<span class="badge bg-secondary">${result.reply}</span>`;
-    chatMessages.appendChild(botDiv);
-
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  });
-</script>

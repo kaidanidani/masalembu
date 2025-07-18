@@ -112,11 +112,15 @@ class Auth extends BaseController
     {
         $userModel = new UserModel();
         $userId = session()->get('user_id');
-        $user = $userModel->find($userId);
 
-        // Ambil data nama & foto dari session jika tersedia
-        $user['foto'] = session()->get('foto') ?? $user['foto'];
-        $user['nama'] = session()->get('username') ?? $user['nama'];
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
+        $user = $userModel->find($userId);
+        if (!$user) {
+            return redirect()->to('/login')->with('error', 'User tidak ditemukan.');
+        }
 
         return view('auth/edit_profile', ['user' => $user]);
     }
@@ -125,7 +129,15 @@ class Auth extends BaseController
     {
         $userModel = new UserModel();
         $userId = session()->get('user_id');
+
+        if (!$userId) {
+            return redirect()->to('/login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+
         $user = $userModel->find($userId);
+        if (!$user) {
+            return redirect()->to('/login')->with('error', 'User tidak ditemukan.');
+        }
 
         $data = [
             'nama'          => $this->request->getPost('nama'),
@@ -133,11 +145,23 @@ class Auth extends BaseController
             'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
         ];
 
+        // Validasi password (optional)
+        $password = $this->request->getPost('password');
+        $repassword = $this->request->getPost('repassword');
+
+        if (!empty($password)) {
+            if ($password !== $repassword) {
+                return redirect()->back()->withInput()->with('error', 'Password dan konfirmasi tidak cocok.');
+            }
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
         // Upload foto baru jika ada
         $file = $this->request->getFile('foto');
         if ($file && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
 
+            // Hapus foto lama
             if (!empty($user['foto']) && file_exists('uploads/' . $user['foto'])) {
                 unlink('uploads/' . $user['foto']);
             }
@@ -145,21 +169,18 @@ class Auth extends BaseController
             $file->move('uploads', $newName);
             $data['foto'] = $newName;
         } else {
-            $data['foto'] = $user['foto']; // Pakai foto lama jika tidak ganti
+            $data['foto'] = $user['foto']; // tetap pakai yang lama
         }
 
-        // Ganti password jika diisi
-        $password = $this->request->getPost('password');
-        if (!empty($password)) {
-            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-        }
-
+        // Update ke database
         $userModel->update($userId, $data);
 
-        // Update session data agar sinkron di header dan form
-        session()->set('foto', $data['foto']);
-        session()->set('username', $data['nama']);
+        // Perbarui session agar konsisten
+        session()->set([
+            'username' => $data['nama'],
+            'foto'     => $data['foto'],
+        ]);
 
-        return redirect()->to('/edit-profile')->with('success', 'Profil berhasil diperbarui');
+        return redirect()->to('/edit-profile')->with('success', '✅ Profil berhasil diperbarui.');
     }
 }

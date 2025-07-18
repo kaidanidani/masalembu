@@ -10,6 +10,7 @@ class PaketModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'nama', 'slug', 'kategori', 'harga', 'fasilitas', 'durasi',
-        'gambar', 'rating', 'deskripsi', 'created_at', 'updated_at'
+        'gambar', 'rating', 'deskripsi', 'created_at', 'updated_at',
+        'kuota_paket', 'kuota_orang' // pastikan ini ditambahkan
     ];
 }

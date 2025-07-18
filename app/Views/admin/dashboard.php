@@ -34,6 +34,36 @@
 </section>
 
 
+<!-- CHAT BOT -->
+<div class="container mt-4">
+  <h4>Chat Terbaru Pengguna</h4>
+
+  <?php if (!empty($chatPerUser)) : ?>
+    <?php
+      // Ambil satu pengguna dengan pesan terakhir (pengguna terbaru)
+      $uid = array_key_first($chatPerUser);
+      $chat = $chatPerUser[$uid];
+    ?>
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title"><?= esc($chat['nama']) ?></h5>
+        <p class="card-text">
+          <?= esc($chat['pesan_terakhir']['message']) ?>
+          <br>
+          <small class="text-muted"><?= date('d M Y H:i', strtotime($chat['pesan_terakhir']['created_at'])) ?></small>
+        </p>
+       <a href="<?= base_url('admin/chat/detail/' . urlencode($uid)) ?>" class="btn btn-primary btn-sm">Lihat Detail</a>
+      </div>
+    </div>
+  <?php else : ?>
+    <div class="alert alert-warning">Tidak ada chat.</div>
+  <?php endif; ?>
+</div>
+
+
+
+
+
 <section class="admin-konten py-5" style="background: url('<?= base_url('foto/destinasi1.png') ?>') center/cover no-repeat;">
   <div class="container">
     <div class="row g-4 align-items-stretch">
@@ -152,4 +182,4 @@
   </div>
 </section>
 
-<?= $this->include('layout/footer') ?>
+<?= $this->include('layout/footer_admin') ?>

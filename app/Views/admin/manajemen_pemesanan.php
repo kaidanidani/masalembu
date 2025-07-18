@@ -1,4 +1,4 @@
-<?= $this->include('layout/header') ?>
+<?= $this->include('layout/header_admin') ?>
 
 <section class="bg-light py-5" style="background: url('<?= base_url('foto/destinasi.jpg') ?>') center/cover no-repeat;">
   <div class="container text-white text-center mb-4">
@@ -57,7 +57,7 @@
             <img src="<?= base_url('foto/destinasi2.png') ?>" alt="Paket Wisata" width="120" class="mb-3">
             <h5 class="fw-bold">Paket Wisata</h5>
             <p class="text-muted">Lihat dan kelola daftar paket wisata yang tersedia.</p>
-            <a href="<?= base_url('admin/paket') ?>" class="btn btn-outline-primary btn-sm">Kelola Paket</a>
+            <a href="<?= base_url('admin/paket') ?>" class="btn btn-outline-primary btn-sm">Kelola Paket Wisata</a>
           </div>
         </div>
       </div>
@@ -65,4 +65,4 @@
   </div>
 </section>
 
-<?= $this->include('layout/footer') ?>
+<?= $this->include('layout/footer_admin') ?>

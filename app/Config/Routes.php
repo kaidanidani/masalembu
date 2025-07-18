@@ -75,4 +75,42 @@ $routes->get('admin/pemesanan/delete/(:num)', 'Admin\Pemesanan::delete/$1');
 // ==========================
 // === API / CHATGPT DEMO ===
 // ==========================
-$routes->post('chatgpt-api', 'ChatController::chat');
+// di app/Config/Routes.php
+ // opsional hanya untuk debugging
+$routes->post('grok-api', 'ChatController::chat'); // untuk endpoint Groq Chatbot
+$routes->post('chat/tanya', 'ChatController::tanya');
+
+
+
+
+// ==============================
+// ===== ADMIN: PAKET WISATA ====
+// ==============================
+
+$routes->group('admin', ['namespace' => 'App\Controllers\admin'], function($routes) {
+    $routes->get('paket', 'Paket::index');
+    $routes->get('paket/edit/(:num)', 'Paket::edit/$1');
+    $routes->post('paket/update/(:num)', 'Paket::update/$1');
+    $routes->post('paket/delete/(:num)', 'Paket::delete/$1');
+    $routes->get('tambah-paket', 'Paket::create');
+    $routes->post('paket/store', 'Paket::store');
+});
+
+
+$routes->get('admin/daftar_paket', 'admin\Paket::daftar_paket');
+
+
+// ==========================
+// ===== DISPLAY CAROUSEL ===
+// ==========================
+$routes->get('display', 'Display::index');
+$routes->get('display/create', 'Display::create');
+$routes->post('display/store', 'Display::store');
+$routes->get('display/delete/(:num)', 'Display::delete/$1');
+
+
+// ==========================
+// ===== CHAT DETAIL ===
+// ==========================
+
+$routes->get('admin/chat/detail/(:num)', 'Admin\Dashboard::chat_detail/$1');

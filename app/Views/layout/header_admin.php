@@ -5,11 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Admin - Masalembu</title>
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- BOOTSTRAP CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
 
+<!-- BOOTSTRAP ICONS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<!-- SWIPER CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- BOOTSTRAP & SWIPER JS (pakai defer agar tidak blokir loading halaman) -->
+
+<!-- CUSTOM CSS -->
   <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
   
 </head>
@@ -40,6 +50,7 @@
   <a class="nav-link" href="http://localhost:8888/cms/wp-admin/post-new.php" target="_blank">CMS Artikel</a>
 </li>
 
+        <li class="nav-item"><a class="nav-link" href="<?= site_url('/admin/Keuangan') ?>">Keuangan</a></li>
         <li class="nav-item"><a class="nav-link" href="<?= site_url('/admin/feedback') ?>">Feedback</a></li>
       </ul>
 

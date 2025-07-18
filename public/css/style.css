@@ -1,38 +1,10 @@
  /* NAVBAR  HEADER*/
-.navbar {
-    background-color: transparent;
-    backdrop-filter: blur(4px);
-    transition: background-color 0.3s ease;
-    z-index: 999;
-  }
+
 
   .navbar-nav .nav-link {
     font-weight: 500;
     color: #000;
   }
-
-  .navbar .btn {
-    padding: 6px 16px;
-  }
-  .nav-links {
-  margin-left: auto;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-/* Styling link navigasi */
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #ffc107;
-}
 /* AKHIR NAVBAR */
 
   /* Sticky fix */
@@ -74,9 +46,7 @@
 }
 
 
-  .footer {
-  background: linear-gradient(to right,hsl(215, 37.30%, 63.70%), #4b6589, #10365d); /* Gradient biru gelap ke terang */
-}
+  
 
 .price-overlay {
   position: absolute;
@@ -94,138 +64,12 @@
 
 
 
-/* === BUTTONS === */
-.btn-masalembu {
-  font-size: 0.875rem;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: 500;
-  display: inline-block;
-  width: fit-content;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-}
-
-.btn-masalembu-outline {
-  background-color: transparent;
-  border: 1px solid #0d6efd;
-  color: #0d6efd;
-}
-.btn-masalembu-outline:hover {
-  background-color: #0d6efd;
-  color: white;
-}
-
-.btn-masalembu-primary {
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-}
-.btn-masalembu-primary:hover {
-  background-color: #084cdf;
-  color: white;
-}
-
-/* Untuk tombol hero (besar) */
-.btn-hero {
-  font-size: 1rem;
-  padding: 10px 24px;
-  border-radius: 50px;
-  background-color: #5b7dbc;
-  color: white;
-  border: none;
-}
-.btn-hero:hover {
-  background-color: #47619c;
-}
 
 
 
 /* ======= */
 /* CARD DASBOARD BERITA */
 /* === CARD STYLE FIX === */
-.card {
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-}
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
-.card-title {
-  font-weight: 600;
-}
-.card-body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.text-justify {
-  text-align: justify;
-}
-
-/* HARGA OVERLAY PAKET */
-.card .harga-overlay,
-.position-absolute.bottom-0.start-0 {
-  background-color: rgba(0, 0, 0, 0.7);
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: white;
-  border-top-right-radius: 1rem;
-  padding: 6px 12px;
-}
-
-/* BINTANG */
-.bi-star-fill {
-  color: #ffc107;
-}
-
-/* RESPONSIVE */
-@media (max-width: 576px) {
-  .btn-masalembu,
-  .btn-masalembu-outline,
-  .btn-masalembu-primary {
-    font-size: 0.8rem;
-    padding: 5px 12px;
-  }
-}
-
-/* === Glass Effect for Explore Card === */
-.glass-card {
-  background: rgba(255, 255, 255, 0.2); /* transparan putih */
-  backdrop-filter: blur(8px); /* blur efek kaca */
-  -webkit-backdrop-filter: blur(8px); /* untuk Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.glass-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-.explore-card img {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.explore-card {
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -246,47 +90,6 @@
   }
 
 
-/* DESTINASI WISATA */
-
-/* hero Wisata */
-.hero-section1 {  
-  background: url('../foto/destinasi.jpg') center/cover no-repeat; 
-  height: 300px;
-  position: relative;
-  display: flex;
-  justify-content: auto;
-}
-
-.hero-wisata {
-  padding: 2rem;
-  background: url('your-image.jpg') no-repeat center center/cover;
-  position: relative;
-  min-height: 300px;
-  display: flex;
-  align-items: center;
-}
-
-.title-wisata {
-  color: rgba(255, 255, 255, 0.8); /* putih agak transparan */
-  font-size: 2rem !important ;
-  font-weight: 700;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  margin-bottom: 3rem;
-}
-
-/* Responsive adjustments */
-@media (min-width: 768px) {
-  .title-wisata {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .title-wisata {
-    font-size: 4rem;
-  }
-}
- /* css hero wisata end */
 
  
 
@@ -456,96 +259,6 @@ form input[type="password"] {
 /* END Kotak */
 
 
-/* CETAK  */
-
-
-
-.cetak-section {
-    background: url('/images/destinasi.jpg') no-repeat center center;
-    background-size: cover;
-    padding: 50px 20px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-  }
-
-  .cetak-wrapper {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 12px;
-    max-width: 800px;
-    width: 100%;
-    font-family: 'Segoe UI', sans-serif;
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
-  }
-
-  .section-title {
-    font-weight: bold;
-    border-bottom: 1px solid #aaa;
-    padding-bottom: 6px;
-    margin: 30px 0 15px;
-  }
-
-  table.info-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  table.info-table td {
-    padding: 5px 4px;
-    vertical-align: top;
-  }
-
-  table.info-table td:first-child {
-    width: 200px;
-    font-weight: 500;
-  }
-
-  .total-row td {
-    font-weight: bold;
-    border-top: 1px solid #999;
-    padding-top: 8px;
-  }
-
-  .btn-wrapper {
-    text-align: right;
-    margin-top: 30px;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 8px 18px;
-    border-radius: 5px;
-    font-size: 14px;
-    text-decoration: none;
-    color: white;
-    margin-left: 10px;
-  }
-
-  .btn-success { background-color: #198754; }
-  .btn-danger { background-color: #dc3545; }
-
-  @media print {
-    .btn-wrapper {
-      display: none;
-    }
-
-    .cetak-section {
-      background: none !important;
-      padding: 0;
-    }
-
-    .cetak-wrapper {
-      box-shadow: none;
-      padding: 0;
-      background: transparent;
-    }
-  }
-
-
-
-
 /* Edit Profile */
 /* Card pembungkus form dan avatar */
 .edit-profile-card {
@@ -640,27 +353,556 @@ form .btn {
 
 
 
-/* CHAT BOOT */
-/* Chat Floating Icon */
-.chat-toggle-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1050;
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+
+
+
+
+/* FOOTER DASBORD USER 2 */
+
+/* Gaya umum carousel */
+.carousel-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px; /* full tinggi di desktop */
+  overflow: hidden;
 }
 
-/* Chat Box */
-.chat-box {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 300px;
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Atur agar di mobile tidak terlalu tinggi */
+@media (max-width: 768px) {
+  .carousel-img-wrapper {
+    height: 300px; /* bisa diubah jadi 250px / 200px sesuai selera */
+  }
+}
+
+
+
+
+/* ========== */
+/* ==== MASALEMBU BOT ==== */
+#chatBox {
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+#chatBox.fullscreen-mobile {
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    border-radius: 0 !important;
+    resize: none !important;
+  }
+
+#chatMessages {
+  background-color: #f8f9fa;
+  padding: 8px;
+  border-radius: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Bubbles */
+.chat-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+/* Bot Bubble */
+.chat-bubble.bot {
+  align-self: flex-start;
+  background-color: #e9ecef;
+  color: #333;
+  border-top-left-radius: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* User Bubble */
+.chat-bubble.user {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+  border-top-right-radius: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Icon inside bubble */
+.chat-bubble i {
+  margin-top: 2px;
+  font-size: 1rem;
+}
+
+/* Input Area */
+#chatForm {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#chatForm textarea {
+  resize: none;
+  border-radius: 8px;
+  height: 38px;
+  padding: 6px 10px;
+}
+
+/* Chat Toggle Button */
+.chat-toggle-btn {
+  z-index: 1060;
+}
+.dropdown-menu {
+  z-index: 9999 !important;
+}
+
+
+
+/* ====== */
+
+/* EDIT PAKET WISATA */
+
+/* ===== */
+
+
+.tambah-paket-section {
+  padding: 40px 20px;
+  background: #fff;
+  min-height: 100vh;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #1d1d1d;
+  text-align: center;
+}
+
+
+/* FORM paket */
+.form-tambah-paket {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.form-group {
+  background: #fdfde6;
+  padding: 18px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 16px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  color: #1a1a1a;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
   background-color: #fff;
-  z-index: 1040;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Upload Gambar */
+
+.upload-area.no-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  background: #f8f8f8;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+}
+
+.upload-area.no-image label.upload-label {
+  position: static;
+  display: flex;
+  font-size: 15px;
+  font-weight: 15px;
+  padding: 20px 30px;
+  border: 2px dashed #999;
+  border-radius: 10px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+
+.upload-box {
+  background-color: #fffcd8;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.upload-area {
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.upload-area img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+.upload-label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #666;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+
+.upload-area.has-image .upload-label {
+  display: none;
+}
+
+
+.upload-label.hidden {
+  display: none !important;
+}
+
+.upload-box .upload-area {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.upload-box .upload-area img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 0 auto 0 0; /* mepet kiri */
+  display: block;
+}
+
+.upload-label {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  background: rgba(255,255,255,0.95);
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 20px;
   border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.upload-label::before {
+  content: "\f1da"; /* Unicode for Bootstrap bi-arrow-repeat */
+  font-family: "Bootstrap Icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.upload-area.has-image:hover .upload-label {
+  background: #f1f1f1;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Grid untuk dropdown */
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Tombol Simpan */
+.text-end {
+  text-align: right;
+}
+.btn-simpan {
+  background-color: #007bff;
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+}
+.btn-simpan:hover {
+  background-color: #0056b3;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .form-group,
+  .dropdown-grid {
+    padding: 15px;
+  }
+
+  .upload-box .upload-area img {
+    max-width: 100%;
+  }
+
+  .btn-simpan {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Asterisk merah */
+.required {
+  color: red;
+}
+
+/*  */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn-simpan {
+  background-color: #007bff; /* Biru */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-simpan:hover {
+  background-color: #0056b3;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+
+
+/* ===== */
+/* DAFTAR PAKET ADMIN */
+
+/* ======= */
+
+
+.daftar-paket-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+.section-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+.filter-kuota {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+}
+.filter-btn {
+  padding: 10px 20px;
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.filter-btn.aktif {
+  background: #f4c542;
+  color: #000;
+}
+.card-paket {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  position: relative;
+  min-height: 200px;
+  align-items: flex-start;
+}
+.card-paket.tersedia {
+  background-color: #fffff3;
+}
+.gambar-paket img {
+  width: 180px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.detail-paket {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.detail-paket h5 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.detail-paket .harga {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.detail-paket p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+.aksi-paket {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+}
+.btn-edit, .btn-delete {
+  font-size: 18px;
+  background: none;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.btn-edit { color: #007bff; }
+.btn-delete { color: #dc3545; }
+
+.fixed-tambah {
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  z-index: 1000;
+  transition: opacity 0.3s;
+}
+.fixed-tambah.faded {
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-tambah {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 100px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-paket {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .gambar-paket img {
+    width: 100%;
+    height: auto;
+  }
+  .aksi-paket {
+    position: static;
+    margin-top: 10px;
+  }
+}
+
+.filter-kuota-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap; /* tidak wrap biar tetap satu baris */
+  gap: 1rem;
+  margin-bottom: 20px;
+  flex-direction: row;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+  min-width: 0; /* penting untuk mencegah input melebihi container */
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 0;
 }
