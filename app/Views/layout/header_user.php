@@ -49,6 +49,7 @@
               
               <li><a class="dropdown-item" href="#">Paket Liburan</a></li>
               <li><a class="dropdown-item" href="<?= site_url('/home/destinasi_wisata') ?>">Berita</a></li>
+              <li><a class="dropdown-item" href="<?= site_url('/home/cek-pesanan') ?>">Cek Pesanan</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="<?= site_url('/home/kontak') ?>">Kontak</a></li>

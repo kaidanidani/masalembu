@@ -25,40 +25,63 @@
         <input type="email" name="email" id="email" required>
 
         <label for="password">Password</label>
-        <div class="password-field">
-          <input type="password" name="password" id="password" required>
-          <button type="button" class="toggle-password" id="togglePassword">
-            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+        <div class="password-wrapper" style="position: relative;">
+          <input 
+            type="password" 
+            name="password" 
+            id="password" 
+            required 
+            style="width: 100%; padding-right: 50px; height: 40px; box-sizing: border-box;"
+          >
+
+          <button 
+            type="button" 
+            id="togglePassword" 
+            style="
+              position: absolute;
+              top: 50%;
+              right: 10px;
+              transform: translateY(-50%);
+              background: none;
+              border: none;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              padding: 0;
+              font-size: 14px;
+              color: #333;
+            "
+          >
+            <i class="fa-solid fa-eye-slash" id="eyeIcon" style="margin-right: 5px;"></i>
+            <span id="toggleText">Show</span>
           </button>
         </div>
 
-        <div class="options">
+        <div class="options" style="margin-top: 10px;">
           <label>
-            <input type="checkbox" name="remember"> Keep me signed in until I sign out
+            <input type="checkbox" name="remember" checked>
+            Keep me signed in until I sign out
           </label>
         </div>
 
         <button type="submit" class="btn-signin">Sign In</button>
       </form>
 
-      <div class="link-options">
-        <a href="<?= site_url('/forgot') ?>">Lupa Password?</a>
-        <p>Don't have an account? <a href="/register">Sign Up</a></p>
+      <div class="link-options" style="margin-top: 15px;">
+        <a href="<?= site_url('/forgot') ?>">Forgot your password?</a>
+        <p>Don't have an account? <a href="/register"><strong>Sign Up</strong></a></p>
       </div>
     </div>
   </div>
 </div>
-<?php if (session()->getFlashdata('error')) : ?>
-    <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
-<?php endif; ?>
 
-
-<!-- Script Toggle Password -->
+<!-- Toggle Password Script -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
     const icon = document.getElementById('eyeIcon');
+    const toggleText = document.getElementById('toggleText');
 
     toggleBtn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -66,6 +89,7 @@
       passwordInput.type = isPassword ? 'text' : 'password';
       icon.classList.toggle('fa-eye');
       icon.classList.toggle('fa-eye-slash');
+      toggleText.textContent = isPassword ? 'Hide' : 'Show';
     });
   });
 </script>

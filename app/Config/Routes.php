@@ -24,6 +24,12 @@ $routes->get('paket/(:segment)', 'Home::detailPaket/$1');
 $routes->get('home/form-pemesanan', 'Home::formPemesanan');
 $routes->get('home/form-pemesanan/(:segment)', 'Home::formPemesanan/$1');
 $routes->post('home/simpan-pemesanan', 'Home::simpanPemesanan');
+$routes->get('/home/bayar/(:num)', 'Home::bayar/$1');
+$routes->post('/home/selesai-bayar', 'Home::selesaiBayar');
+$routes->get('home/cek-pesanan', 'Home::cekPesanan');
+$routes->get('home/detail-pesanan/(:num)', 'Home::detailPesanan/$1');
+$routes->get('home/bayar-midtrans/(:num)', 'Home::bayarMidtrans/$1');
+$routes->post('midtrans-notification', 'Home::handleMidtransNotification');
 $routes->get('home/cetak/(:num)', 'Home::cetak/$1');
 $routes->get('home/export-pdf/(:num)', 'Home::exportPdf/$1');
 
